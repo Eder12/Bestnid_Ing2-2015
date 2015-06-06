@@ -196,7 +196,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
 					</form>
 				</div>
 				<div class="wrapper">
-				<?php include("includes/menu.php"); ?>
+				<?php include("includes/menu_reg.php"); ?>
 				</div>
 				<div class="wrapper">
 					<div class="col">
