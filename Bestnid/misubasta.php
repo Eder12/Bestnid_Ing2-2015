@@ -90,12 +90,7 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 			<header>
 				<div class="wrapper">
 					<h1><a href="index.php" id="logo">Bestnid</a></h1>
-					<form id="search" method="post">
-						<div>
-							<input type="submit" class="submit" value="">
-							<input type="text" class="input">
-						</div>
-					</form>
+				<?php include("includes/busca.php"); ?>
 				</div>
 				<div class="wrapper">
 				<?php include("includes/menu.php"); ?>
