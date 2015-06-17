@@ -19,10 +19,10 @@
 			<header>
 				<div class="wrapper">
 					<h1><a href="../index.php" id="logo">Bestnid</a></h1>				
-					<?php include("includes/busca.php"); ?>
+					<?php include("../includes/busca.php"); ?>
 				</div>
 				<div class="wrapper">
-					<?php include("../includes/menu.php"); ?>
+					<?php include("../includes/menu2.php"); ?>
 				</div>
 				<div class="wrapper">
 					<div class="col">

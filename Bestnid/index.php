@@ -14,7 +14,7 @@
 <body id="page1">
 <div class="body1">
 	<div class="body2">
-		<div class="main">
+	  <div class="main">
 <!-- header -->
 			<header>
 				<div class="wrapper">
@@ -33,29 +33,6 @@
 			</header>
 <!-- / header -->
 <!-- content -->
-		  <section id="content">
-				<article class="col1">
-					<h3>Ultimas Subastas Publicadas</h3>
-					<div class="wrapper">
-						<figure class="left marg_right1"><a href="#"><img src="#" alt=""></a></figure>
-						<p>
-							<strong>Atvero eos acusmus</strong><br>et iusto odio dignissimos ducimus qui blanditiis praentium. &nbsp; <a href="#">More</a>
-						</p>
-					</div>
-					<div class="wrapper">
-						<figure class="left marg_right1"><a href="#"><img src="#" alt=""></a></figure>
-						<p>
-							<strong>Voluptatum deleniti</strong> Atque corrupti dolores et quas molestias exceptur sint occaecati. &nbsp; <a href="#">More</a>
-						</p>
-					</div>
-					<div class="wrapper">
-						<figure class="left marg_right1"><a href="#"><img src="#" alt=""></a></figure>
-						<p>
-							<strong>Cupiditate provident</strong> Similique sunt in culpa qui officia deserunt mollitia animi. &nbsp; <a href="#">More</a>
-						</p>
-					</div>
-				</article>
-			</section>
 		</div>
 	</div>
 </div>

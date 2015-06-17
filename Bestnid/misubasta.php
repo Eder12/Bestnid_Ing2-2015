@@ -1,4 +1,4 @@
-<?php 
+<?php require_once('Connections/best.php'); ?><?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
 ?>
@@ -57,7 +57,7 @@ if (isset($_GET['pageNum_subastaver'])) {
 $startRow_subastaver = $pageNum_subastaver * $maxRows_subastaver;
 
 mysql_select_db($database_best, $best);
-$query_subastaver = "SELECT * FROM subastas ORDER BY Titulo ASC";
+$query_subastaver = "SELECT * FROM subastas INNER JOIN usuarios ON subastas.idUsuarios = usuarios.idUsuarios WHERE usuarios.Usuario = colname ORDER BY subastas.Titulo ASC ";
 $query_limit_subastaver = sprintf("%s LIMIT %d, %d", $query_subastaver, $startRow_subastaver, $maxRows_subastaver);
 $subastaver = mysql_query($query_limit_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
@@ -129,7 +129,7 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
                   <p>&nbsp;</p>
 			  </article>
 			</section>
-		</div>
+	  </div>
 	</div>
 </div>
 <div class="body3">
