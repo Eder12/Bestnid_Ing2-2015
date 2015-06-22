@@ -105,7 +105,7 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 <!-- content -->
 			<section id="content">
 			  <article class="col2">
-					<h3>Todas las subastas. </h3>
+					<h3>Todas las subastas.</h3>
 				    <form name="registro" id="registro">
                     <table width="872" height="68" border="1">
                       <tr>             

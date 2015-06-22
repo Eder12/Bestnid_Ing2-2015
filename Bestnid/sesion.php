@@ -23,7 +23,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
   unset($_SESSION['MM_UserGroup']);
   unset($_SESSION['PrevUrl']);
 	
-  $logoutGoTo = "System/okSesion.php";
+  $logoutGoTo = "ok-error/okSesion.php";
   if ($logoutGoTo) {
     header("Location: $logoutGoTo");
     exit;
@@ -45,8 +45,8 @@ if (isset($_POST['textfield'])) {
   $loginUsername=$_POST['textfield'];
   $password=$_POST['textfield2'];
   $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "System/okSesion.php";
-  $MM_redirectLoginFailed = "System/errorSesion.php";
+  $MM_redirectLoginSuccess = "ok-error/okSesion.php";
+  $MM_redirectLoginFailed = "ok-error/errorSesion.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_best, $best);
   
