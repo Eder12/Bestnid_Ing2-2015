@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Error Sesi&oacute;n</title>
+<title>Ok Crear puja</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
@@ -26,13 +26,12 @@
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Usuario o clave  incorrecta. </h2>
-						<p class="pad_bot1"> Intente de nuevo. </p>
+						<h2>Se ha creado su puja con existo. </h2>
+						<p class="pad_bot1"> Gracias por usar Bestnid. </p>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>
-						<p class="pad_bot1">&nbsp;</p>
-				  </div>
+					</div>
 				</div>
 			</header>
 <!-- / header -->
