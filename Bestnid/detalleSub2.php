@@ -1,4 +1,4 @@
-<!--falta la imagen, cambiar el id de categoria por el nombre de la categoria y el link al detalle de cada subasta.-->
+<!--Lo mismo que subasta. falta que cuando le dan a detalle le mande la que toca, falta los link a pregunta (que las pueden ver todos), modificar (solo quien la creo), etc-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
@@ -72,18 +72,19 @@ if (isset($_GET['totalRows_subastaver'])) {
 $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 
 $colname_categ = "-1";
-if (isset($_SESSION['idCategorias'])) {
-  $colname_categ = (get_magic_quotes_gpc()) ? $_SESSION['idCategorias'] : addslashes($_SESSION['idCategorias']);
+if (isset($_POST['idCategorias'])) {
+  $colname_categ = (get_magic_quotes_gpc()) ? $_POST['idCategorias'] : addslashes($_POST['idCategorias']);
 }
 mysql_select_db($database_best, $best);
 $query_categ = sprintf("SELECT * FROM categorias WHERE idCategorias = %s ORDER BY Nombre ASC", $colname_categ);
 $categ = mysql_query($query_categ, $best) or die(mysql_error());
 $row_categ = mysql_fetch_assoc($categ);
 $totalRows_categ = mysql_num_rows($categ);
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Subastas</title>
+<title>Detalle</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -93,7 +94,7 @@ $totalRows_categ = mysql_num_rows($categ);
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
 </head>
-<body id="page2">
+<body id="page4">
 <div class="body1">
 	<div class="body2">
 	  <div class="main">
@@ -108,7 +109,8 @@ $totalRows_categ = mysql_num_rows($categ);
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Subastas <span>Todas las subastas de Bestnid </span></h2>
+						<h2>Detalle</h2>
+						<p>&nbsp;</p>
 						<p>&nbsp;</p>
 						<p>&nbsp;</p>
 					</div>
@@ -116,33 +118,34 @@ $totalRows_categ = mysql_num_rows($categ);
 			</header>
 <!-- / header -->
 <!-- content -->
-			<section id="content">
-			  <article class="col2">
-					<h3>Todas las subastas.</h3>
-				    <form name="registro" id="registro">
-                    <table width="890" height="136" border="1">
-                      <tr>             
-                        <td width="177">Imagen</td>
-                        <td width="189">Titulo</td>
-                        <td width="168">Categoria </td>
-                        <td width="164">Fecha de creacion </td>                        
-                        <td width="158">Fecha de vencimiento </td>                        
+		  <section id="content">
+<article class="col2">
+				  <table width="886" height="233" border="1">
+                      <tr>
+                        <td width="235" height="42">Imagen</td>
+                        <td width="145">Titulo</td>
+                        <td width="127">Categoria</td>
+                        <td width="152">Fecha de creacion</td>
+                        <td width="193">Fecha de vencimiento </td>
+                    </tr>
+                      <tr>
+                        <td rowspan="3"><?php //echo $row_subastaver['Imagen']; ?></td>
+                        <td><?php echo $row_subastaver['Titulo']; ?></td>
+                        <td><?php echo $row_categ['Nombre']; ?></td>
+                        <td><?php echo $row_subastaver['Fecha']; ?></td>
+                        <td><?php echo $row_subastaver['Fecha_venc']; ?></td>
                       </tr>
-                      <?php do { ?>
-                        <tr>                          
-                          <td height="99"><?php //echo $row_subastaver['Imagen']; ?></td>
-                          <td><?php echo $row_subastaver['Titulo']; ?></td>
-                          <td><?php echo $row_categ['Nombre']; ?></td>
-                          <td><?php echo $row_subastaver['Fecha']; ?></td>  
-						  <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
+                      <tr>
+                        <td height="40" colspan="4">Descripcion</td>
                       </tr>
-                        <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
+                      <tr>
+                        <td height="84" colspan="4"><?php echo $row_subastaver['Descripcion']; ?></td>
+                      </tr>
                     </table>
-				  </form>
-                  <p>&nbsp;</p>
+		    <p>&nbsp;</p>
 			  </article>
-			</section>
-	  </div>
+		  </section>
+		</div>
 	</div>
 </div>
 <div class="body3">
@@ -158,8 +161,3 @@ $totalRows_categ = mysql_num_rows($categ);
 </div>
 </body>
 </html>
-<?php
-mysql_free_result($subastaver);
-
-mysql_free_result($categ);
-?>

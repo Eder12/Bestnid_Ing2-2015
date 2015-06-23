@@ -103,7 +103,12 @@ if (isset($_GET['pageNum_subastaver'])) {
 $startRow_subastaver = $pageNum_subastaver * $maxRows_subastaver;
 
 mysql_select_db($database_best, $best);
-$query_subastaver = "SELECT * FROM subastas WHERE (idUsuarios = '$IdUsuarioLogin') ORDER BY Titulo ASC";   //faltaria poner el usuario que toca. algo asi $IdUsuarioLogin = "SELECT `idUsuarios` FROM `usuarios` WHERE Usuario=`$loginUsername`"; pero no se. si cambian el $IdUsuarioLogin en la consulta por un 1 o 2 sirve.
+$query_IdLogin= "SELECT idUsuarios FROM usuarios WHERE (Usuario= 'nico')";
+$query_limit_IdLogin= sprintf($query_IdLogin);
+$SIdLogin = mysql_query($query_limit_IdLogin, $best) or die(mysql_error());
+$row_IdLogin = mysql_fetch_assoc($SIdLogin); 
+$IdLogin= $row_IdLogin['idUsuarios'];
+$query_subastaver = "SELECT * FROM subastas WHERE (idUsuarios = '$IdLogin') ORDER BY Titulo ASC";   //faltaria poner el usuario que toca. algo asi $IdUsuarioLogin = "SELECT `idUsuarios` FROM `usuarios` WHERE (Usuario=`$loginUsername`)"; pero no se. si cambian el $IdUsuarioLogin en la consulta por un 1 o 2 sirve.
 $query_limit_subastaver = sprintf("%s LIMIT %d, %d", $query_subastaver, $startRow_subastaver, $maxRows_subastaver);
 $subastaver = mysql_query($query_limit_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
@@ -143,7 +148,10 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Mis Subastas<span>Todas mis subastas publicada en Bestnid.</span></h2>
+					<h2>Mis Subastas<span>Todas mis subastas publicada en Bestnid.
+					    <?php echo $IdLogin['idUsuarios'];?>
+						<?php echo $MM_Username;?>
+						</span></h2> 
 				  </div>
 				</div>
 			</header>

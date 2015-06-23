@@ -52,7 +52,6 @@ if (isset($_POST['textfield'])) {
   
   $LoginRS__query=sprintf("SELECT Usuario, Clave FROM usuarios WHERE Usuario='%s' AND Clave='%s'",
     get_magic_quotes_gpc() ? $loginUsername : addslashes($loginUsername), get_magic_quotes_gpc() ? $password : addslashes($password)); 
-   
   $LoginRS = mysql_query($LoginRS__query, $best) or die(mysql_error());
   $loginFoundUser = mysql_num_rows($LoginRS);
   if ($loginFoundUser) {

@@ -43,7 +43,7 @@ if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers,
   header("Location: ". $MM_restrictGoTo); 
   exit;
 }
-?><!--falta la imagen, cambiar el id de categoria por el nombre de la categoria y el link al detalle de cada subasta.-->
+?>
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
@@ -103,7 +103,12 @@ if (isset($_GET['pageNum_subastaver'])) {
 $startRow_subastaver = $pageNum_subastaver * $maxRows_subastaver;
 
 mysql_select_db($database_best, $best);
-$query_subastaver = "SELECT * FROM subastas WHERE (idUsuarios = '$IdUsuarioLogin') ORDER BY Titulo ASC";   //faltaria poner el usuario que toca. algo asi $IdUsuarioLogin = "SELECT `idUsuarios` FROM `usuarios` WHERE Usuario=`$loginUsername`"; pero no se. si cambian el $IdUsuarioLogin en la consulta por un 1 o 2 sirve.
+$query_IdLogin= "SELECT idUsuarios FROM usuarios WHERE (Usuario= 'nico')";                                       //faltaria poner el usuario que toca, pero no se.
+$query_limit_IdLogin= sprintf($query_IdLogin);
+$SIdLogin = mysql_query($query_limit_IdLogin, $best) or die(mysql_error());
+$row_IdLogin = mysql_fetch_assoc($SIdLogin); 
+$IdLogin= $row_IdLogin['idUsuarios'];
+$query_subastaver = "SELECT * FROM subastas WHERE (idUsuarios = '$IdLogin') ORDER BY Titulo ASC";  
 $query_limit_subastaver = sprintf("%s LIMIT %d, %d", $query_subastaver, $startRow_subastaver, $maxRows_subastaver);
 $subastaver = mysql_query($query_limit_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
@@ -118,7 +123,7 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Subastas</title>
+<title>Mi subastas</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -142,8 +147,9 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 				<?php include("includes/menu.php"); ?>
 				</div>
 				<div class="wrapper">
-					<div class="col">
-						<h2>Mis Subastas<span>Todas mis subastas publicada en Bestnid.</span></h2>
+					<div class="col">					
+						<h2>Mis Subastas<span>Todas mis subastas publicada en Bestnid.
+						</span></h2> 
 				  </div>
 				</div>
 			</header>

@@ -1,4 +1,6 @@
-<?php require_once('Connections/best.php'); ?>
+<?php
+error_reporting(E_STRICT);
+require_once('Connections/best.php'); ?>
 <?php
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {

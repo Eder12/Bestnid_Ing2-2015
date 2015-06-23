@@ -93,10 +93,7 @@ $totalPages_buscador = ceil($totalRows_buscador/$maxRows_buscador)-1;
 <!-- footer -->
 		<footer>
 			<?php include("includes/pie.php"); ?>
-			<div class="pad">
-				 Website template designed by <a href="http://www.templatemonster.com/" target="_blank" rel="nofollow">www.templatemonster.com</a><br>
-				 3D Models provided by <a href="http://www.templates.com/product/3d-models/" target="_blank" rel="nofollow">www.templates.com</a>
-			</div>
+			<?php include("includes/nombres.php"); ?>
 		</footer>
 <!-- / footer -->
   </div>

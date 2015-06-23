@@ -28,7 +28,11 @@
 					<div class="col">
 						<h2>Registro finalizado. </h2>
 						<p class="pad_bot1"> Gracias por registrarse en bestnid. </p>
-				  </div>
+						<p class="pad_bot1">&nbsp;</p>
+						<p class="pad_bot1">&nbsp;</p>
+						<p class="pad_bot1">&nbsp;</p>
+						<p class="pad_bot1">&nbsp;</p>
+					</div>
 				</div>
 			</header>
 <!-- / header -->

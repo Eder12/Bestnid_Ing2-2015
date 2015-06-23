@@ -1,3 +1,4 @@
+<!--falta una lista de las categorias y en fecha poner una calendario, pasar bien los id y la fecha actual, ¿como es lo de comision? -->
 <?php error_reporting(E_STRICT);
 require_once('Connections/best.php'); ?>
 <?php
