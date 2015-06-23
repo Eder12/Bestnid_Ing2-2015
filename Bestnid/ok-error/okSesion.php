@@ -27,7 +27,7 @@
 				<div class="wrapper">
 					<div class="col">
 						<h2>Usted a iniciado sesión. </h2>
-						<p class="pad_bot1"> Bienvenido y gracias por ingresar. </p>
+						<p class="pad_bot1"> Bienvenido y gracias por ingresar.</p>
 				  </div>
 				</div>
 			</header>

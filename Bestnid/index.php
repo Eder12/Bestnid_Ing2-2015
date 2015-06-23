@@ -26,9 +26,10 @@
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Bienvenidos a BestnidSitio de Subastas </h2>
+						<h2>Bienvenidos a Bestnid sitio de subastas </h2>
 						<p class="pad_bot1"> Bestnid es considerado una subasta, pero un tanto particular. En Bestnid el bien subastado no se adjudica al postor que m&aacute;s dinero haya ofrecido por &eacute;l, sino por lo que cada postor comunica por qu&eacute; necesita dicho producto, y el subastador eligira lo necesita mas. </p>
-				  </div>
+						<p class="pad_bot1">&nbsp;</p>
+					</div>
 				</div>
 			</header>
 <!-- / header -->

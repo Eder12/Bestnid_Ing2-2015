@@ -1,3 +1,4 @@
+<!--ver si lo dodemos hacer asi o cambiar la BD y gurdar la imagenes en una carpeta.-->
 <?php
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 

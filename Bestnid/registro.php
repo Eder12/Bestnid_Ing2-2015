@@ -1,3 +1,4 @@
+<!--falta poner lindo lo de duplicado y mirar el color del borde del buscador, que tambien es un input y quedo medio mal.-->
 <?php 
 error_reporting(E_STRICT);
 require_once('connections/best.php');

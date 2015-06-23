@@ -106,9 +106,9 @@ if (isset($_POST['textfield'])) {
 				  <?php include("includes/menu.php"); ?>
 				</div>
 				<div class="wrapper">
-					<div class="col">
-						<h2>Sesión <span>Para ingresar a su cuenta, por favor ingrese su Nombre de Usuario y su contraseña. </span></h2>
-				  </div>
+				  <div class="col">
+					  <h2>Sesión <span>Para ingresar a su cuenta, por favor ingrese su Nombre de Usuario y su contraseña. </span></h2>
+					</div>
 				</div>
 			</header>
 <!-- / header -->

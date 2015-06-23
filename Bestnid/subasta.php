@@ -1,3 +1,4 @@
+<!--falta la imagen, cambiar el id de categoria por el nombre de la categoria y el link al detalle de cada subasta.-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
@@ -98,7 +99,9 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 				<div class="wrapper">
 					<div class="col">
 						<h2>Subastas <span>Todas las subastas de Bestnid </span></h2>
-				  </div>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					</div>
 				</div>
 			</header>
 <!-- / header -->
@@ -107,21 +110,21 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 			  <article class="col2">
 					<h3>Todas las subastas.</h3>
 				    <form name="registro" id="registro">
-                    <table width="872" height="68" border="1">
+                    <table width="890" height="136" border="1">
                       <tr>             
-                        <td width="126">Titulo</td>
-                        <td width="132">Fecha</td>
-                        <td width="172">Fecha de finalización</td>
-                        <td width="136">Estado</td>                        
-                        <td width="272">Descripcion</td>                        
+                        <td width="177">Imagen</td>
+                        <td width="189">Titulo</td>
+                        <td width="168">Categoria </td>
+                        <td width="164">Fecha de creacion </td>                        
+                        <td width="158">Fecha de vencimiento </td>                        
                       </tr>
                       <?php do { ?>
                         <tr>                          
+                          <td height="99"><?php //echo $row_subastaver['Imagen']; ?></td>
                           <td><?php echo $row_subastaver['Titulo']; ?></td>
-                          <td><?php echo $row_subastaver['Fecha']; ?></td>
-                          <td><?php echo $row_subastaver['Fecha_venc']; ?></td>
-                          <td><?php echo $row_subastaver['Estado']; ?></td>  
-						  <td><?php echo $row_subastaver['Descripcion']; ?></td>             
+                          <td><?php echo $row_subastaver['idCategorias']; ?></td>
+                          <td><?php echo $row_subastaver['Fecha']; ?></td>  
+						  <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
                       </tr>
                         <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
                     </table>
