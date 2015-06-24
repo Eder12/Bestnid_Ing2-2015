@@ -58,9 +58,9 @@ if (isset($_GET['pageNum_subastaver'])) {
 $startRow_subastaver = $pageNum_subastaver * $maxRows_subastaver;
 
 mysql_select_db($database_best, $best);
-$query_subastaver = "SELECT * FROM subastas ORDER BY Titulo ASC";
+$query_subastaver = "SELECT * FROM subastas WHERE Estado = 'Pendiente' ORDER BY Titulo ASC";
 $query_limit_subastaver = sprintf("%s LIMIT %d, %d", $query_subastaver, $startRow_subastaver, $maxRows_subastaver);
-$subastaver = mysql_query($query_limit_subastaver, $best) or die(mysql_error());
+$subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
 
 if (isset($_GET['totalRows_subastaver'])) {
@@ -76,10 +76,7 @@ if (isset($_SESSION['idCategorias'])) {
   $colname_categ = (get_magic_quotes_gpc()) ? $_SESSION['idCategorias'] : addslashes($_SESSION['idCategorias']);
 }
 mysql_select_db($database_best, $best);
-$query_categ = sprintf("SELECT * FROM categorias WHERE idCategorias = %s ORDER BY Nombre ASC", $colname_categ);
-$categ = mysql_query($query_categ, $best) or die(mysql_error());
-$row_categ = mysql_fetch_assoc($categ);
-$totalRows_categ = mysql_num_rows($categ);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,14 +124,25 @@ $totalRows_categ = mysql_num_rows($categ);
                         <td width="168">Categoria </td>
                         <td width="164">Fecha de creacion </td>                        
                         <td width="158">Fecha de vencimiento </td>                        
+                        <td width="158">Ver más</td>                        
                       </tr>
                       <?php do { ?>
                         <tr>                          
-                          <td height="99"><?php //echo $row_subastaver['Imagen']; ?></td>
+                          <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="100" /></td>
                           <td><?php echo $row_subastaver['Titulo']; ?></td>
-                          <td><?php echo $row_categ['Nombre']; ?></td>
+                          <td><?php
+
+                          $query_categ = sprintf("SELECT * FROM categorias WHERE idCategorias = %s ORDER BY Nombre ASC", $row_subastaver['idCategorias']);
+                          $categ = mysql_query($query_categ, $best) or die(mysql_error());
+                          $row_categ = mysql_fetch_assoc($categ);
+                          $totalRows_categ = mysql_num_rows($categ);
+
+                           echo $row_categ['Nombre']; 
+
+                           ?></td>
                           <td><?php echo $row_subastaver['Fecha']; ?></td>  
-						  <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
+                          <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
+						              <td><a href="detalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver mas guachin</a></td>             
                       </tr>
                         <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
                     </table>

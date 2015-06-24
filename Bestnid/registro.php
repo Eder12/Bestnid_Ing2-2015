@@ -1,7 +1,7 @@
 <!--falta poner lindo lo de duplicado y mirar el color del borde del buscador, que tambien es un input y quedo medio mal.-->
 <?php 
 error_reporting(E_STRICT);
-require_once('connections/best.php');
+require_once('Connections/best.php');
  ?>
 <?php
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -35,6 +35,21 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
+
+  /*Existe el usuario, email, o dni, mostrar mensaje*/
+
+  /*
+  
+  $error = 'exitste el aglo';
+
+  if(isset($error)) echo $error;
+
+  else{
+
+    
+  }
+   */
+
   $insertSQL = sprintf("INSERT INTO usuarios (Usuario, Clave, Nombre, Apellido, DNI, Email, Telefono, Tipo_cuenta, idLocalidad, Fecha_reg) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['Usuario'], "text"),
                        GetSQLValueString($_POST['Clave'], "text"),

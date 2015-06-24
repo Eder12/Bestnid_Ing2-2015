@@ -1,7 +1,9 @@
 <?php
 error_reporting(E_STRICT);
-require_once('Connections/best.php'); ?>
-<?php
+require_once('Connections/best.php');
+
+session_start();
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
@@ -34,12 +36,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $insertSQL = sprintf("INSERT INTO pujas (Estado, Monto, Fecha, Descripcion, idSubastas, idUsuarios) VALUES (%s, %s, %s, %s, %s, %s)",
-                       GetSQLValueString($_POST['Estado'], "text"),
+                       GetSQLValueString('Pendiente', "text"),
                        GetSQLValueString($_POST['Monto'], "int"),
-                       GetSQLValueString($_POST['Fecha'], "date"),
+                       GetSQLValueString(date('Y-m-d'), "date"),
                        GetSQLValueString($_POST['Descripcion'], "text"),
-                       GetSQLValueString($_POST['idSubastas'], "int"),
-                       GetSQLValueString($_POST['idUsuarios'], "int"));
+                       GetSQLValueString($_GET['id'], "int"),
+                       GetSQLValueString($_SESSION['MM_Id'], "int"));
 
   mysql_select_db($database_best, $best);
   $Result1 = mysql_query($insertSQL, $best) or die(mysql_error());
@@ -82,7 +84,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 						<h2>Crea una puja. <span>Ingrese todos los datos para crear una nueva puja. </span></h2>	
 						
                   
-                                            <form method="post" name="form1" action="<?php echo $editFormAction; ?>">
+                         <form method="post" name="form1" action="<?php echo $editFormAction; ?>">
                           <table align="center">
                             <tr valign="baseline">
                               <td nowrap align="right">Descripcion:</td>
@@ -97,10 +99,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                               <td><input type="submit" value="Insertar registro"></td>
                             </tr>
                           </table>
-                          <input type="hidden" name="idUsuarios" value="el id del usuario que hace la puja tenemos que ver bien como se manda.">
-                          <input type="hidden" name="idSubastas" value="lo mismo que usuario pero esta vendria del detalle de una subasta.">
-                          <input type="hidden" name="Fecha" value="que es sistema ponga la fecha actual solo.">
-                          <input type="hidden" name="Estado" value="Pendiente">
                           <input type="hidden" name="MM_insert" value="form1">
                         </form>
                         <p>&nbsp;</p>

@@ -1,54 +1,12 @@
-<!--ver linea 106 mas o menos,. el comentario.-->
-<?php
-if (!isset($_SESSION)) {
-  session_start();
-}
-$MM_authorizedUsers = "";
-$MM_donotCheckaccess = "true";
-
-// *** Restrict Access To Page: Grant or deny access to this page
-function isAuthorized($strUsers, $strGroups, $UserName, $UserGroup) { 
-  // For security, start by assuming the visitor is NOT authorized. 
-  $isValid = False; 
-
-  // When a visitor has logged into this site, the Session variable MM_Username set equal to their username. 
-  // Therefore, we know that a user is NOT logged in if that Session variable is blank. 
-  if (!empty($UserName)) { 
-    // Besides being logged in, you may restrict access to only certain users based on an ID established when they login. 
-    // Parse the strings into arrays. 
-    $arrUsers = Explode(",", $strUsers); 
-    $arrGroups = Explode(",", $strGroups); 
-    if (in_array($UserName, $arrUsers)) { 
-      $isValid = true; 
-    } 
-    // Or, you may restrict access to only certain users based on their username. 
-    if (in_array($UserGroup, $arrGroups)) { 
-      $isValid = true; 
-    } 
-    if (($strUsers == "") && true) { 
-      $isValid = true; 
-    } 
-  } 
-  return $isValid; 
-}
-
-$MM_restrictGoTo = "ok-error/accesoDenegado.php";
-if (!((isset($_SESSION['MM_Username'])) && (isAuthorized("",$MM_authorizedUsers, $_SESSION['MM_Username'], $_SESSION['MM_UserGroup'])))) {   
-  $MM_qsChar = "?";
-  $MM_referrer = $_SERVER['PHP_SELF'];
-  if (strpos($MM_restrictGoTo, "?")) $MM_qsChar = "&";
-  if (isset($QUERY_STRING) && strlen($QUERY_STRING) > 0) 
-  $MM_referrer .= "?" . $QUERY_STRING;
-  $MM_restrictGoTo = $MM_restrictGoTo. $MM_qsChar . "accesscheck=" . urlencode($MM_referrer);
-  header("Location: ". $MM_restrictGoTo); 
-  exit;
-}
-?>
+<!--falta la imagen, cambiar el id de categoria por el nombre de la categoria y el link al detalle de cada subasta.-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
-?>
-<?php
+
+//initialize the session
+if (!isset($_SESSION)) {
+  session_start();
+}
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
@@ -95,35 +53,15 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
   $Result1 = mysql_query($insertSQL, $best) or die(mysql_error());
 }
 
-$maxRows_subastaver = 10;
-$pageNum_subastaver = 0;
-if (isset($_GET['pageNum_subastaver'])) {
-  $pageNum_subastaver = $_GET['pageNum_subastaver'];
-}
-$startRow_subastaver = $pageNum_subastaver * $maxRows_subastaver;
-
 mysql_select_db($database_best, $best);
-$query_IdLogin= "SELECT idUsuarios FROM usuarios WHERE (Usuario= 'nico')";                                       //faltaria poner el usuario que toca, pero no se.
-$query_limit_IdLogin= sprintf($query_IdLogin);
-$SIdLogin = mysql_query($query_limit_IdLogin, $best) or die(mysql_error());
-$row_IdLogin = mysql_fetch_assoc($SIdLogin); 
-$IdLogin= $row_IdLogin['idUsuarios'];
-$query_subastaver = "SELECT * FROM subastas WHERE (idUsuarios = '$IdLogin') ORDER BY Titulo ASC";  
-$query_limit_subastaver = sprintf("%s LIMIT %d, %d", $query_subastaver, $startRow_subastaver, $maxRows_subastaver);
-$subastaver = mysql_query($query_limit_subastaver, $best) or die(mysql_error());
+$query_subastaver = "SELECT * FROM subastas WHERE idUsuarios = '{$_SESSION['MM_Id']}' ORDER BY Fecha DESC";
+$subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
 
-if (isset($_GET['totalRows_subastaver'])) {
-  $totalRows_subastaver = $_GET['totalRows_subastaver'];
-} else {
-  $all_subastaver = mysql_query($query_subastaver);
-  $totalRows_subastaver = mysql_num_rows($all_subastaver);
-}
-$totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Mi subastas</title>
+<title>Subastas</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -135,30 +73,31 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 </head>
 <body id="page2">
 <div class="body1">
-	<div class="body2">
-	  <div class="main">
+  <div class="body2">
+    <div class="main">
 <!-- header -->
-			<header>
-				<div class="wrapper">
-					<h1><a href="index.php" id="logo">Bestnid</a></h1>
-					<?php include("includes/busca.php"); ?>
-				</div>
-				<div class="wrapper">
-				<?php include("includes/menu.php"); ?>
-				</div>
-				<div class="wrapper">
-					<div class="col">					
-						<h2>Mis Subastas<span>Todas mis subastas publicada en Bestnid.
-						</span></h2> 
-				  </div>
-				</div>
-			</header>
+      <header>
+        <div class="wrapper">
+          <h1><a href="index.php" id="logo">Bestnid</a></h1>
+          <?php include("includes/busca.php"); ?>
+        </div>
+        <div class="wrapper">
+        <?php include("includes/menu.php"); ?>
+        </div>
+        <div class="wrapper">
+          <div class="col">
+            <h2>Subastas <span>MIS SUBASTAS </span></h2>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+          </div>
+        </div>
+      </header>
 <!-- / header -->
 <!-- content -->
-			<section id="content">
-			  <article class="col2">
-					<h3>Todas mis subastas.</h3>
-				    <form name="registro" id="registro">
+      <section id="content">
+        <article class="col2">
+          <h3>Todas las subastas.</h3>
+            <form name="registro" id="registro">
                     <table width="890" height="136" border="1">
                       <tr>             
                         <td width="177">Imagen</td>
@@ -166,32 +105,46 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
                         <td width="168">Categoria </td>
                         <td width="164">Fecha de creacion </td>                        
                         <td width="158">Fecha de vencimiento </td>                        
+                        <td width="158">Acciones</td>                        
                       </tr>
-                      <?php do { ?>
+                      <?php while ($row_subastaver = mysql_fetch_assoc($subastaver)){ ?>
                         <tr>                          
-                          <td height="99"><?php //echo $row_subastaver['Imagen']; ?></td>
+                          <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="100" /></td>
                           <td><?php echo $row_subastaver['Titulo']; ?></td>
-                          <td><?php echo $row_subastaver['idCategorias']; ?></td>
+                          <td><?php
+
+                          $query_categ = sprintf("SELECT * FROM categorias WHERE idCategorias = %s", $row_subastaver['idCategorias']);
+                          $categ = mysql_query($query_categ, $best) or die(mysql_error());
+                          $row_categ = mysql_fetch_assoc($categ);
+
+                           echo $row_categ['Nombre']; 
+
+                           ?></td>
                           <td><?php echo $row_subastaver['Fecha']; ?></td>  
-						  <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
+                          <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
+                          <td>
+                            <a href="detalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver mas guachin</a> -
+                            <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -
+                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Eliminar</a>
+                          </td>             
                       </tr>
-                        <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
+                        <?php } ?>
                     </table>
-				  </form>
+          </form>
                   <p>&nbsp;</p>
-			  </article>
-			</section>
-	  </div>
-	</div>
+        </article>
+      </section>
+    </div>
+  </div>
 </div>
 <div class="body3">
-	<div class="main">
+  <div class="main">
 <!-- / content -->
 <!-- footer -->
-		<footer>
-			<?php include("includes/pie.php"); ?>
-			<?php include("includes/nombres.php"); ?>
-		</footer>
+    <footer>
+      <?php include("includes/pie.php"); ?>
+      <?php include("includes/nombres.php"); ?>
+    </footer>
 <!-- / footer -->
   </div>
 </div>
@@ -199,4 +152,6 @@ $totalPages_subastaver = ceil($totalRows_subastaver/$maxRows_subastaver)-1;
 </html>
 <?php
 mysql_free_result($subastaver);
+
+mysql_free_result($categ);
 ?>

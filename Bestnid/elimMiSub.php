@@ -26,7 +26,7 @@ function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDe
   return $theValue;
 }
 
-if ((isset($_GET['idSubastas'])) && ($_GET['idSubastas'] != "") && (isset($_GET['NombreDeLaURL']))) {
+if ((isset($_GET['idSubastas'])) && ($_GET['idSubastas'] != "")) {
   $deleteSQL = sprintf("DELETE FROM subastas WHERE idSubastas=%s",
                        GetSQLValueString($_GET['idSubastas'], "int"));
 

@@ -11,6 +11,7 @@ if (!isset($_SESSION)) {
 // ** Logout the current user. **
 $logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
 if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING'] != "")){
+    session_destroy();
   $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
@@ -23,7 +24,7 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
   unset($_SESSION['MM_UserGroup']);
   unset($_SESSION['PrevUrl']);
 	
-  $logoutGoTo = "ok-error/okSesion.php";
+  $logoutGoTo = "/";
   if ($logoutGoTo) {
     header("Location: $logoutGoTo");
     exit;
@@ -45,19 +46,22 @@ if (isset($_POST['textfield'])) {
   $loginUsername=$_POST['textfield'];
   $password=$_POST['textfield2'];
   $MM_fldUserAuthorization = "";
-  $MM_redirectLoginSuccess = "ok-error/okSesion.php";
+  $MM_redirectLoginSuccess = "/";
   $MM_redirectLoginFailed = "ok-error/errorSesion.php";
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_best, $best);
   
-  $LoginRS__query=sprintf("SELECT Usuario, Clave FROM usuarios WHERE Usuario='%s' AND Clave='%s'",
+  $LoginRS__query=sprintf("SELECT idUsuarios, Usuario, Clave FROM usuarios WHERE Usuario='%s' AND Clave='%s'",
     get_magic_quotes_gpc() ? $loginUsername : addslashes($loginUsername), get_magic_quotes_gpc() ? $password : addslashes($password)); 
   $LoginRS = mysql_query($LoginRS__query, $best) or die(mysql_error());
   $loginFoundUser = mysql_num_rows($LoginRS);
   if ($loginFoundUser) {
      $loginStrGroup = "";
     
+     $data = mysql_fetch_assoc($LoginRS);
+
     //declare two session variables and assign them
+    $_SESSION['MM_Id'] = $data['idUsuarios'];
     $_SESSION['MM_Username'] = $loginUsername;
     $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
 
@@ -136,8 +140,6 @@ if (isset($_POST['textfield'])) {
           <input name="submit" type="submit" class="button" value="Iniciar Sesión">
         </p>
       </form>
-	  
-      <a href="<?php echo $logoutAction ?>">Desconectar</a></td>
   </tr>
 </table>
 				</article>

@@ -1,7 +1,14 @@
 <!--falta una lista de las categorias y en fecha poner una calendario, pasar bien los id y la fecha actual, ¿como es lo de comision? -->
 <?php error_reporting(E_STRICT);
-require_once('Connections/best.php'); ?>
-<?php
+require_once('Connections/best.php');
+
+//initialize the session
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
@@ -33,16 +40,86 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
+
+  $imagePath = '';
+    try {
+    
+    // Undefined | Multiple Files | $_FILES Corruption Attack
+    // If this request falls under any of them, treat it invalid.
+    if (
+        !isset($_FILES['upfile']['error']) ||
+        is_array($_FILES['upfile']['error'])
+    ) {
+        throw new RuntimeException('Invalid parameters.');
+    }
+
+    // Check $_FILES['upfile']['error'] value.
+    switch ($_FILES['upfile']['error']) {
+        case UPLOAD_ERR_OK:
+            break;
+        case UPLOAD_ERR_NO_FILE:
+            throw new RuntimeException('No file sent.');
+        case UPLOAD_ERR_INI_SIZE:
+        case UPLOAD_ERR_FORM_SIZE:
+            throw new RuntimeException('Exceeded filesize limit.');
+        default:
+            throw new RuntimeException('Unknown errors.');
+    }
+
+    // You should also check filesize here. 
+    if ($_FILES['upfile']['size'] > 1000000) {
+        throw new RuntimeException('Exceeded filesize limit.');
+    }
+
+    // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
+    // Check MIME Type by yourself.
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    if (false === $ext = array_search(
+        $finfo->file($_FILES['upfile']['tmp_name']),
+        array(
+            'jpg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+        ),
+        true
+    )) {
+        throw new RuntimeException('Invalid file format.');
+    }
+
+    // You should name it uniquely.
+    // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
+    // On this example, obtain safe unique name from its binary data.
+    $imagePath = sprintf('uploads/%s.%s',
+            sha1_file($_FILES['upfile']['tmp_name']),
+            $ext
+        );
+    if (!move_uploaded_file(
+        $_FILES['upfile']['tmp_name'],
+        $imagePath
+    )) {
+        throw new RuntimeException('Failed to move uploaded file.');
+    }
+
+    echo 'File is uploaded successfully.';
+
+} catch (RuntimeException $e) {
+
+    echo $e->getMessage();
+
+}
+
+
+
   $insertSQL = sprintf("INSERT INTO subastas (Titulo, Fecha, Fecha_venc, Estado, Comision, Descripcion, Imagen, idCategorias, idUsuarios) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['Titulo'], "text"),
-                       GetSQLValueString($_POST['Fecha'], "date"),
+                       GetSQLValueString(date('Y-m-d'), "date"),
                        GetSQLValueString($_POST['Fecha_venc'], "date"),
-                       GetSQLValueString($_POST['Estado'], "text"),
-                       GetSQLValueString($_POST['Comision'], "int"),
+                       GetSQLValueString('Pendiente', "text"),
+                       GetSQLValueString(69, "int"),
                        GetSQLValueString($_POST['Descripcion'], "text"),
-                       GetSQLValueString($_POST['Imagen'], "text"),
+                       GetSQLValueString($imagePath, "text"),
                        GetSQLValueString($_POST['idCategorias'], "int"),
-                       GetSQLValueString($_POST['idUsuarios'], "int"));
+                       GetSQLValueString($_SESSION['MM_Id'] , "int"));
 
   mysql_select_db($database_best, $best);
   $Result1 = mysql_query($insertSQL, $best) or die(mysql_error());
@@ -83,7 +160,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 				<div class="wrapper">
 				  <div class="col">
 						<h2>Crea tu subasta <span>Ingrese todos los datos para crear una nueva subasta. </span></h2>	
-                        <form method="post" name="form1" action="<?php echo $editFormAction; ?>">
+                        <form method="post" name="form1" action="<?php echo $editFormAction; ?>" enctype="multipart/form-data">
                           <table align="center">
                             <tr valign="baseline">
                               <td nowrap align="right">Titulo:</td>
@@ -91,7 +168,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Fecha de vencimiento:</td>
-                              <td><input type="text" name="Fecha_venc" size="32"></td>
+                              <td><input type="date" name="Fecha_venc"></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Descripcion:</td>
@@ -99,7 +176,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Imagen:</td>
-                              <td><input type="text" name="Imagen" value="" size="32"></td>
+                              <td><input type="file" name="upfile" value="" size="32"></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Categorias:</td>
@@ -107,6 +184,16 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                                  <option value="menuitem1" <?php //if (!(strcmp("menuitem1", poner la id de la categoria primero que se vea una lista de las mismas))) {echo "SELECTED";} ?>>[ Etiqueta ]</option>
                                   <option value="menuitem2" <?php //if (!(strcmp("menuitem2", poner la id de la categoria primero que se vea una lista de las mismas))) {echo "SELECTED";} ?>>[ Etiqueta ]</option>
                                 </select>-->
+                                <td><select name="idCategorias">
+                                  <option value="0">Seleccione categoria</option>
+                                <?php
+                                  $categorias = mysql_query("SELECT * FROM categorias ORDER BY Nombre");
+
+                                  while($row = mysql_fetch_assoc($categorias)){
+                                    echo '<option value="'.$row['idCategorias'].'">'.$row['Nombre'].'</option>';
+                                  }
+                                ?>
+                                </select></td>
                               </td>
                                                     </tr>
                             <tr valign="baseline">
@@ -114,10 +201,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                               <td><input name="submit" type="submit" value="Insertar registro"></td>
                             </tr>
                           </table>
-                          <input type="hidden" name="idUsuarios" value="poner la id del usuario">
-                          <input type="hidden" name="Fecha" value="poner la fecha actual">
-                          <input type="hidden" name="Estado" value="Pendiente">
-                          <input type="hidden" name="Comision" value="Que tenemos que poner?">
                           <input type="hidden" name="MM_insert" value="form1">
                         </form>                        
 				  </div>
