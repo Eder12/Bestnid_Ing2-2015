@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +29,7 @@
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Usted a modificado su subasta con exito. </h2>
+						<h2>Usted a modificado su subasta con éxito. </h2>
 						<p class="pad_bot1">Gracias por usar Bestnid.</p>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>

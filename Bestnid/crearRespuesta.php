@@ -1,6 +1,8 @@
-<!--no se lo mismo que siempre. verla pregunta-->
-<?php require_once('Connections/best.php'); ?>
-<?php
+<!--no se lo mismo que siempre. ver la pregunta-->
+<?php require_once('Connections/best.php');
+error_reporting(E_STRICT);
+session_start();
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;

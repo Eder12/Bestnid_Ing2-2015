@@ -1,7 +1,8 @@
 <?php
 error_reporting(E_STRICT);
-require_once('Connections/best.php'); ?>
-<?php
+require_once('Connections/best.php'); 
+session_start();
+
 $maxRows_buscador = 10;
 $pageNum_buscador = 0;
 if (isset($_GET['pageNum_buscador'])) {

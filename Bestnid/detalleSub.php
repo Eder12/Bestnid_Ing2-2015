@@ -1,4 +1,3 @@
-<!--Lo mismo que subasta. falta que cuando le dan a detalle le mande la que toca, falta los link a pregunta (que las pueden ver todos), modificar (solo quien la creo), etc-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
@@ -130,7 +129,7 @@ $totalRows_categ = mysql_num_rows($categ);
                         <td width="193">Fecha de vencimiento </td>
                     </tr>
                       <tr>
-                        <td><img src="<?php echo $row_subastaver['Imagen']; ?>" width="600" /></td>
+                        <td><img src="<?php echo $row_subastaver['Imagen']; ?>" width="300" /></td>
                         <td><?php echo $row_subastaver['Titulo']; ?></td>
                         <td><?php echo $row_categ['Nombre']; ?></td>
                         <td><?php echo $row_subastaver['Fecha']; ?></td>
@@ -146,7 +145,7 @@ $totalRows_categ = mysql_num_rows($categ);
         <p>&nbsp;</p>
 
         <?php if(isset($_SESSION['MM_Id'])){ ?>
-          <a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja!</a>
+          <a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja.</a>
         <?php } ?>
         </article>
       </section>

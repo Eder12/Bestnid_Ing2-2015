@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +12,7 @@
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
-<![endif]-->
-</head>
+<![endif]--></head>
 <body id="page1">
 <div class="body1">
 	<div class="body2">
@@ -26,12 +28,12 @@
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Se ha creado su puja con existo. </h2>
+						<h2>Se ha creado su puja con éxito. </h2>
 						<p class="pad_bot1"> Gracias por usar Bestnid. </p>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>
-					</div>
+				  </div>
 				</div>
 			</header>
 <!-- / header -->

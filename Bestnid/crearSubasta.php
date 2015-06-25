@@ -1,4 +1,3 @@
-<!--falta una lista de las categorias y en fecha poner una calendario, pasar bien los id y la fecha actual, ¿como es lo de comision? -->
 <?php error_reporting(E_STRICT);
 require_once('Connections/best.php');
 
@@ -180,11 +179,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Categorias:</td>
-                              <!--<td><select name="idCategorias">
-                                 <option value="menuitem1" <?php //if (!(strcmp("menuitem1", poner la id de la categoria primero que se vea una lista de las mismas))) {echo "SELECTED";} ?>>[ Etiqueta ]</option>
-                                  <option value="menuitem2" <?php //if (!(strcmp("menuitem2", poner la id de la categoria primero que se vea una lista de las mismas))) {echo "SELECTED";} ?>>[ Etiqueta ]</option>
-                                </select>-->
-                                <td><select name="idCategorias">
+                               <td><select name="idCategorias">
                                   <option value="0">Seleccione categoria</option>
                                 <?php
                                   $categorias = mysql_query("SELECT * FROM categorias ORDER BY Nombre");
@@ -198,7 +193,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                                                     </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">&nbsp;</td>
-                              <td><input name="submit" type="submit" value="Insertar registro"></td>
+                              <td><input name="submit" type="submit" value="Crear subasta"></td>
                             </tr>
                           </table>
                           <input type="hidden" name="MM_insert" value="form1">

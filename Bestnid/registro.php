@@ -1,9 +1,7 @@
-<!--falta poner lindo lo de duplicado y mirar el color del borde del buscador, que tambien es un input y quedo medio mal.-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php');
- ?>
-<?php
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
@@ -58,9 +56,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                        GetSQLValueString($_POST['DNI'], "int"),
                        GetSQLValueString($_POST['Email'], "text"),
                        GetSQLValueString($_POST['Telefono'], "int"),
-                       GetSQLValueString($_POST['Tipo_cuenta'], "text"),
-                       GetSQLValueString($_POST['idLocalidad'], "int"),
-                       GetSQLValueString($_POST['Fecha_reg'], "int"));
+                       GetSQLValueString('Usuario', "text"),),
+                       GetSQLValueString(1, "int"),
+                       GetSQLValueString(date('Y-m-d'), "date"));
 
   mysql_select_db($database_best, $best);
   $Result1 = mysql_query($insertSQL, $best) or die(mysql_error());
@@ -160,9 +158,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
       <td><input type="submit" value="Enviar"></td>
     </tr>
   </table>
-  <input type="hidden" name="Tipo_cuenta" value="Usuario">
-  <input type="hidden" name="idLocalidad" value="1">
-  <input type="hidden" name="Fecha_reg" value="2012-12-12">
   <input type="hidden" name="MM_insert" value="form1">
 </form>
 				</article>

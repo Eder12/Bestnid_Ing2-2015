@@ -1,4 +1,3 @@
-<!--supuestamente esto anda solo falta pasar los parametros por url (poner nombre al parametro). y despues lo mismo lo de la img y lo de categoria.-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php');

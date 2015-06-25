@@ -1,3 +1,14 @@
+<?php require_once('Connections/best.php'); 
+error_reporting(E_STRICT);
+session_start();
+mysql_select_db($database_best, $best);
+$query_Preguntas = "SELECT * FROM preguntas";
+$Preguntas = mysql_query($query_Preguntas, $best) or die(mysql_error());
+$row_Preguntas = mysql_fetch_assoc($Preguntas);
+$totalRows_Preguntas = mysql_num_rows($Preguntas);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +49,7 @@
 		  <section id="content">
 <article class="col2"></article>
 		  </section>
-		</div>
+	  </div>
 	</div>
 </div>
 <div class="body3">
@@ -54,3 +65,6 @@
 </div>
 </body>
 </html>
+<?php
+mysql_free_result($Preguntas);
+?>

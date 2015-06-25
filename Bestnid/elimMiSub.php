@@ -1,4 +1,3 @@
-<!--supuestamente elimina el registro que le mandas por url (poner un nombre a este)-->
 <?php require_once('Connections/best.php'); ?>
 <?php
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 

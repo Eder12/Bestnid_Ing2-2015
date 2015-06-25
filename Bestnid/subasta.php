@@ -1,9 +1,7 @@
-<!--falta la imagen, cambiar el id de categoria por el nombre de la categoria y el link al detalle de cada subasta.-->
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
-?>
-<?php
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
@@ -128,7 +126,7 @@ mysql_select_db($database_best, $best);
                       </tr>
                       <?php do { ?>
                         <tr>                          
-                          <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="100" /></td>
+                          <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="126" height="116" /></td>
                           <td><?php echo $row_subastaver['Titulo']; ?></td>
                           <td><?php
 
@@ -142,7 +140,7 @@ mysql_select_db($database_best, $best);
                            ?></td>
                           <td><?php echo $row_subastaver['Fecha']; ?></td>  
                           <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
-						              <td><a href="detalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver mas guachin</a></td>             
+						              <td><a href="detalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a></td>             
                       </tr>
                         <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
                     </table>
