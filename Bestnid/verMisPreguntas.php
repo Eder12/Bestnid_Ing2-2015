@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Error Sesi&oacute;n</title>
+<title>Mis preguntas </title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -11,39 +11,39 @@
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
 </head>
-<body id="page1">
+<body id="page4">
 <div class="body1">
 	<div class="body2">
-		<div class="main">
+	  <div class="main">
 <!-- header -->
 			<header>
 				<div class="wrapper">
-					<h1><a href="index.php" id="logo">Bestnid</a></h1>				
-					<form id="search" method="post">
+					<h1><a href="index.php" id="logo">Bestnid</a></h1>
 					<?php include("includes/busca.php"); ?>
 				</div>
 				<div class="wrapper">
-					<?php include("includes/menu.php"); ?>
+				<?php include("includes/menu.php"); ?>
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Usuario o clave  incorrecta. </h2>
-						<p class="pad_bot1"> Intente de nuevo. </p>
-						<p class="pad_bot1">&nbsp;</p>
-						<p class="pad_bot1">&nbsp;</p>
-						<p class="pad_bot1">&nbsp;</p>
-						<p class="pad_bot1">&nbsp;</p>
-				  </div>
+						<h2>Mis preguntas.</h2>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					</div>
 				</div>
 			</header>
 <!-- / header -->
 <!-- content -->
-		  </div>
+		  <section id="content">
+<article class="col2"></article>
+		  </section>
+		</div>
 	</div>
 </div>
 <div class="body3">
 	<div class="main">
-	<!-- / content -->
+<!-- / content -->
 <!-- footer -->
 		<footer>
 			<?php include("includes/pie.php"); ?>
@@ -52,7 +52,5 @@
 <!-- / footer -->
   </div>
 </div>
-</body>
-</html>
 </body>
 </html>

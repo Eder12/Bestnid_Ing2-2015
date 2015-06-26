@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Inicio</title>
+<title>Mis pujas</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -11,34 +11,39 @@
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
 </head>
-<body id="page1">
+<body id="page4">
 <div class="body1">
 	<div class="body2">
 	  <div class="main">
 <!-- header -->
 			<header>
 				<div class="wrapper">
-					<h1><a href="index.php" id="logo">Bestnid</a></h1>				
+					<h1><a href="index.php" id="logo">Bestnid</a></h1>
 					<?php include("includes/busca.php"); ?>
 				</div>
 				<div class="wrapper">
-					<?php include("includes/menu.php"); ?>
+				<?php include("includes/menu.php"); ?>
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Bienvenidos a BestnidSitio de Subastas </h2>
-						<p class="pad_bot1"> Bestnid es considerado una subasta, pero un tanto particular. En Bestnid el bien subastado no se adjudica al postor que m&aacute;s dinero haya ofrecido por &eacute;l, sino por lo que cada postor comunica por qu&eacute; necesita dicho producto, y el subastador eligira lo necesita mas. </p>
-				  </div>
+						<h2>Mis pujas. </h2>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+					</div>
 				</div>
 			</header>
 <!-- / header -->
 <!-- content -->
+		  <section id="content">
+<article class="col2"></article>
+		  </section>
 		</div>
 	</div>
 </div>
 <div class="body3">
 	<div class="main">
-	<!-- / content -->
+<!-- / content -->
 <!-- footer -->
 		<footer>
 			<?php include("includes/pie.php"); ?>
@@ -47,7 +52,5 @@
 <!-- / footer -->
   </div>
 </div>
-</body>
-</html>
 </body>
 </html>

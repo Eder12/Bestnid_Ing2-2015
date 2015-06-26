@@ -34,7 +34,7 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 	<div class="body2">
 	  <div class="main">
 <!-- header -->
-			<header>
+		<header>
 				<div class="wrapper">
 					<h1><a href="index.php" id="logo">Bestnid</a></h1>
 					<?php include("includes/busca.php"); ?>
@@ -54,10 +54,14 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 						  <tr>						   
                             <td height="39"><span class="Estilo2">Respuesta:</span> <?php echo $row_Preguntas['Respuesta']; ?></td>
                           </tr>
+						  <?php } else { //if (isset($row_Preguntas['idUsuarios'] = $_SESSION['MM_Id'] )){ ?>
+						  <tr>						   
+                            <td height="39"><a href="crearRespuesta.php?idPreguntas=<?php echo $row_Preguntas['idPreguntas']; ?>">Responder</a></td>
+                          </tr>						  					  
 						<?php }} while ($row_Preguntas = mysql_fetch_assoc($Preguntas)); ?>
 						</table>
 				  </div>
-				</div>
+				</div>			    
 			</header>
 <!-- / header -->
 <!-- content -->

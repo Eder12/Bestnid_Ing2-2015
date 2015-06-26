@@ -142,6 +142,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page1">
 <div class="body1">
@@ -163,7 +165,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                           <table align="center">
                             <tr valign="baseline">
                               <td nowrap align="right">Titulo:</td>
-                              <td><input type="text" name="Titulo" value="" size="32"></td>
+                              <td><span id="sprytextfield1">
+                              <input type="text" name="Titulo" value="" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese un titulo.</span><span class="textfieldMinCharsMsg">Ingrese un titulo de 4  caracteres como mínimo.</span><span class="textfieldMaxCharsMsg">Ingrese un titulo de 50 caracteres como máximo.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Fecha de vencimiento:</td>
@@ -190,7 +194,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                                 ?>
                                 </select></td>
                               </td>
-                                                    </tr>
+                            </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">&nbsp;</td>
                               <td><input name="submit" type="submit" value="Crear subasta"></td>
@@ -217,6 +221,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <!-- / footer -->
   </div>
 </div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {minChars:4, maxChars:50});
+</script>
 </body>
 </html>
 </body>

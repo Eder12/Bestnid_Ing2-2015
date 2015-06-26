@@ -60,7 +60,7 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Subastas</title>
+<title>Mi subastas</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -106,9 +106,9 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                         <td width="158">Fecha de vencimiento </td>                        
                         <td width="158">Acciones</td>                        
                       </tr>
-                      <?php while ($row_subastaver = mysql_fetch_assoc($subastaver)){ ?>
+                      <?php do { ?>
                         <tr>                          
-                          <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="126" height="116" /></td>
+                          <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="126" /></td>
                           <td><?php echo $row_subastaver['Titulo']; ?></td>
                           <td><?php
 
@@ -122,12 +122,12 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                           <td><?php echo $row_subastaver['Fecha']; ?></td>  
                           <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
                           <td>
-                            <a href="detalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver mas</a> -
+                            <a href="miDetalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a> -
                             <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -
-                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Eliminar</a>
-                          </td>             
+                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Eliminar</a>							            
+						  </td>             
                       </tr>
-                        <?php } ?>
+                        <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
                     </table>
           </form>
                   <p>&nbsp;</p>

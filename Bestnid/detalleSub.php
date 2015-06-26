@@ -1,7 +1,6 @@
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
-
 session_start();
 
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
@@ -141,13 +140,15 @@ $totalRows_categ = mysql_num_rows($categ);
                       <tr>
                         <td height="84" colspan="4"><?php echo $row_subastaver['Descripcion']; ?></td>
                       </tr>
-                    </table>
+          </table>
         <p>&nbsp;</p>
-
+        -<a href="verPreguntas2.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Pregunta</a>-
         <?php if(isset($_SESSION['MM_Id'])){ ?>
-          <a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja.</a>
-        <?php } ?>
-        </article>
+          -<a href="crearPregunta.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Preguntar</a>-
+		  -<a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja</a>-		  
+            <?php } ?>
+        </p>
+	    </article>
       </section>
     </div>
   </div>

@@ -56,7 +56,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                        GetSQLValueString($_POST['DNI'], "int"),
                        GetSQLValueString($_POST['Email'], "text"),
                        GetSQLValueString($_POST['Telefono'], "int"),
-                       GetSQLValueString('Usuario', "text"),),
+                       GetSQLValueString('Usuario', "text"),
                        GetSQLValueString(1, "int"),
                        GetSQLValueString(date('Y-m-d'), "date"));
 
