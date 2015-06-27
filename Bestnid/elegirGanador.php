@@ -19,12 +19,13 @@ if( $subasta['idUsuarios'] != $_SESSION['MM_Id'] ){
 
 
 if(isset($_GET['ganador'])){
-    mysql_query("UPDATE subastas SET Estado = 'Completada' , Ganador = {$_GET['ganador']} WHERE idSubastas = {$subasta['idSubastas']}");
+    mysql_query("UPDATE subastas SET Estado = 'Completada' , Ganador = {$_GET['ganador']} WHERE idSubastas = {$subasta['idSubastas']}");	
     header('Location: user.php?id='. $_GET['ganador']);
     die;
 }
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Buscador</title>
@@ -51,8 +52,9 @@ if(isset($_GET['ganador'])){
                 <?php include("includes/menu.php"); ?>
                 </div>
                 <div class="wrapper">
-                    <div class="col">
-                        <h2>Elegir Ganador de mi subasta</h2>
+                  <div class="col">
+                      <h2>Elegir Ganador de mi subasta</h2>
+                        <p>&nbsp;</p>
                         <?php
                             $pujas_query = mysql_query("SELECT * FROM pujas WHERE idSubastas = '{$subasta['idSubastas']}'");
                             if(!mysql_num_rows($pujas_query))
@@ -60,7 +62,9 @@ if(isset($_GET['ganador'])){
 
                             while($puja=mysql_fetch_assoc($pujas_query)){?>
                             <p><?php echo $puja['Descripcion'];?> <a href="elegirGanador.php?id=<?php echo $_GET['id'] ?>&ganador=<?php echo $puja['idUsuarios'] ?>">Elegir esta oferta como ganadora.</a></p>
-                            <?php } ?>
+                            <p>
+                              <?php } ?>
+                            </p>
                     </div>
                 </div>
             </header>

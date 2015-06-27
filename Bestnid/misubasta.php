@@ -124,7 +124,9 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                           <td>
                             <a href="DetalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a> -
                             <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -
+							<?php if($row_subastaver['Estado'] != 'Completada'){ ?>
                             <a href="elegirGanador.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Elegir ganador</a> -
+							<?php }?>
                             <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Eliminar</a>							            
 						  </td>             
                       </tr>

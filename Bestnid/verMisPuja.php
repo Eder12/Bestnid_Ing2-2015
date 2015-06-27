@@ -94,25 +94,23 @@ $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
         <article class="col2">
           <h3>Todas mis pujas.</h3>
         <form name="registro" id="registro">
-                    <table width="726" height="69" border="1">
+                    <table width="767" border="1">
                       <tr>             
-                        <td width="177" height="30">Fecha</td>
-                        <td width="189">Estado</td>
-                        <td width="168">Monto </td>
-                        <td width="164">Descripcion </td>                       
+                        <td width="89" height="31">Fecha</td>
+                        <td width="94">Estado</td>
+                        <td width="74">Monto </td>
+                        <td width="482">Descripcion </td>
                       </tr>
                       <?php while ($puja = mysql_fetch_assoc($subastaver)){ ?>
                         <tr>                          
-                          <td height="31"><?php echo $puja['Fecha']; ?></td>
+                          <td height="28"><?php echo $puja['Fecha']; ?></td>
                           <td><?php echo $puja['Estado']; ?></td>  
                           <td><?php echo $puja['Monto']; ?></td>
-						  <td><?php echo $puja['Descripcion']; ?></td>						  
-                      </tr>
+						  <td><?php echo $puja['Descripcion']; ?></td>
+					  </tr>
                         <?php } ?>
             </table>
-          </form>  
-		  
-		  
+          </form>		  
         </article>
       </section>
     </div>
