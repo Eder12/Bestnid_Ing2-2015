@@ -2,6 +2,68 @@
 error_reporting(E_STRICT);
 require_once('Connections/best.php');
 
+// *** Redirect if username exists
+$MM_flag="MM_insert";
+if (isset($_POST[$MM_flag])) {
+  $MM_dupKeyRedirect="ok-error/existeUsuario.php";
+  $loginUsername = $_POST['Usuario'];
+  $LoginRS__query = "SELECT Usuario FROM usuarios WHERE Usuario='" . $loginUsername . "'";
+  mysql_select_db($database_best, $best);
+  $LoginRS=mysql_query($LoginRS__query, $best) or die(mysql_error());
+  $loginFoundUser = mysql_num_rows($LoginRS);
+
+  //if there is a row in the database, the username was found - can not add the requested username
+  if($loginFoundUser){
+    $MM_qsChar = "?";
+    //append the username to the redirect page
+    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginUsername;
+    header ("Location: $MM_dupKeyRedirect");
+    exit;
+  }
+}
+// *** Redirect if DNI exists
+$MM_flag="MM_insert";
+if (isset($_POST[$MM_flag])) {
+  $MM_dupKeyRedirect="ok-error/existeDni.php";
+  $loginDni = $_POST['DNI'];
+  $LoginDni__query = "SELECT DNI FROM usuarios WHERE DNI='" . $loginDni . "'";
+  mysql_select_db($database_best, $best);
+  $LoginDni=mysql_query($LoginDni__query, $best) or die(mysql_error());
+  $loginFoundDni = mysql_num_rows($LoginDni);
+
+  //if there is a row in the database, the username was found - can not add the requested username
+  if($loginFoundDni){
+    $MM_qsChar = "?";
+    //append the username to the redirect page
+    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginDni;
+    header ("Location: $MM_dupKeyRedirect");
+    exit;
+  }
+}
+// *** Redirect if Email exists
+$MM_flag="MM_insert";
+if (isset($_POST[$MM_flag])) {
+  $MM_dupKeyRedirect="ok-error/existeEmail.php";
+  $loginEmail = $_POST['Email'];
+  $LoginEmail__query = "SELECT Email FROM usuarios WHERE Email='" . $loginEmail . "'";
+  mysql_select_db($database_best, $best);
+  $LoginEmail=mysql_query($LoginEmail__query, $best) or die(mysql_error());
+  $loginFoundEmail = mysql_num_rows($LoginEmail);
+
+  //if there is a row in the database, the username was found - can not add the requested username
+  if($loginFoundEmail){
+    $MM_qsChar = "?";
+    //append the username to the redirect page
+    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginEmail;
+    header ("Location: $MM_dupKeyRedirect");
+    exit;
+  }
+}
+
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;
@@ -33,21 +95,6 @@ if (isset($_SERVER['QUERY_STRING'])) {
 }
 
 if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
-
-  /*Existe el usuario, email, o dni, mostrar mensaje*/
-
-  /*
-  
-  $error = 'exitste el aglo';
-
-  if(isset($error)) echo $error;
-
-  else{
-
-    
-  }
-   */
-
   $insertSQL = sprintf("INSERT INTO usuarios (Usuario, Clave, Nombre, Apellido, DNI, Email, Telefono, Tipo_cuenta, idLocalidad, Fecha_reg) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
                        GetSQLValueString($_POST['Usuario'], "text"),
                        GetSQLValueString($_POST['Clave'], "text"),
