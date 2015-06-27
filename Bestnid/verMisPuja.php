@@ -97,21 +97,20 @@ $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
                     <table width="767" border="1">
                       <tr>             
                         <td width="89" height="31">Fecha</td>
-                        <td width="94">Estado</td>
+                        <td width="94">Titulo</td>
                         <td width="74">Monto </td>
                         <td width="482">Descripcion </td>
-						<td width="74">Ganador</td>
-                      </tr>
+					  </tr>
                       <?php while ($puja = mysql_fetch_assoc($subastaver)){ ?>
                         <tr>                          
                           <td height="28"><?php echo $puja['Fecha']; ?></td>
-                          <td><?php echo $puja['Estado']; ?></td>  
+                          <td><?php 
+						   $subasta_query = mysql_query("SELECT Titulo FROM subastas WHERE idSubastas = {$puja['idSubastas']}");
+                           $subasta = mysql_fetch_assoc($subasta_query);?>
+						   <a href="DetalleSub.php?id=<?php echo $puja['idSubastas']; ?>"> <?php echo $subasta['Titulo']; ?></a>
+						  </td>
                           <td><?php echo $puja['Monto']; ?></td>
 						  <td><?php echo $puja['Descripcion']; ?></td>
-						  <td><?php 
-						  $subasta_query = mysql_query("SELECT Ganador FROM subastas WHERE idSubastas = {$subastaver['idSubastas']}");
-                          $subasta = mysql_fetch_assoc($subasta_query);
-						  if($subasta['Ganador'] == $_SESSION['MM_Id']) { ?><a href="crearRespuesta.php">Responder</a><?php } ?></td>
 					  </tr>
                         <?php } ?>
             </table>

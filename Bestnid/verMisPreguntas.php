@@ -26,6 +26,10 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 	color: #00CCFF;
 	font-weight: bold;
 }
+.Estilo3 {
+	color: #FF0000;
+	font-weight: bold;
+}
 -->
 </style>
 </head>
@@ -45,17 +49,25 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 				<div class="wrapper">
 				  <div class="col">
 						<h2>Mis preguntas</h2>
-						<table width="548" height="84" border="1">
+						<table width="548" height="175" border="1">
 						<?php do { ?>
                           <tr>
-                            <td height="37"><span class="Estilo1"><strong>Pregunta:</strong></span> <?php echo $row_Preguntas['Pregunta']; ?></td>
+                            <td height="44"><p>___________________________________________________________________</p>
+                              <p><span class="Estilo3">Titulo:</span> 
+                                <?php 
+						   $subasta_query = mysql_query("SELECT Titulo FROM subastas WHERE idSubastas = {$row_Preguntas['idSubastas']}");
+                           $subasta = mysql_fetch_assoc($subasta_query);?>
+                              <a href="DetalleSub.php?id=<?php echo $row_Preguntas['idSubastas']; ?>"> <?php echo $subasta['Titulo']; ?></a></p></td>
+                          </tr>
+						  <tr>
+                            <td height="40"><span class="Estilo1"><strong>Pregunta:</strong></span> <?php echo $row_Preguntas['Pregunta']; ?></td>
                           </tr>
                            <?php if(isset($row_Preguntas['Respuesta'])){?>
 						  <tr>						   
-                            <td height="39"><span class="Estilo2">Respuesta:</span> <?php echo $row_Preguntas['Respuesta']; ?></td>
+                            <td><span class="Estilo2">Respuesta:</span> <?php echo $row_Preguntas['Respuesta']; ?></td>
                           </tr>
 						<?php }} while ($row_Preguntas = mysql_fetch_assoc($Preguntas)); ?>
-						</table>
+					</table>
 				  </div>
 				</div>
 			</header>
