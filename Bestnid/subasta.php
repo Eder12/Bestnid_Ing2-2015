@@ -1,6 +1,7 @@
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
+session_start();
 
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {

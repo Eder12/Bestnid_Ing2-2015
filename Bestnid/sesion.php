@@ -18,23 +18,21 @@ if ((isset($_GET['doLogout'])) &&($_GET['doLogout']=="true")){
   //to fully log out a visitor we need to clear the session varialbles
   $_SESSION['MM_Username'] = NULL;
   $_SESSION['MM_UserGroup'] = NULL;
+  
+  $_SESSION['Privilegios'] = NULL;
   $_SESSION['PrevUrl'] = NULL;
   unset($_SESSION['MM_Username']);
+  unset($_SESSION['Privilegios']);
   unset($_SESSION['MM_UserGroup']);
   unset($_SESSION['PrevUrl']);
-	
+	session_destroy();
   $logoutGoTo = "index.php";
   if ($logoutGoTo) {
     header("Location: $logoutGoTo");
     exit;
   }
 }
-?>
-<?php
-// *** Validate request to login to this site.
-if (!isset($_SESSION)) {
-  session_start();
-}
+
 
 $loginFormAction = $_SERVER['PHP_SELF'];
 if (isset($_GET['accesscheck'])) {
@@ -50,7 +48,7 @@ if (isset($_POST['textfield'])) {
   $MM_redirecttoReferrer = false;
   mysql_select_db($database_best, $best);
   
-  $LoginRS__query=sprintf("SELECT idUsuarios, Usuario, Clave FROM usuarios WHERE Usuario='%s' AND Clave='%s'",
+  $LoginRS__query=sprintf("SELECT idUsuarios, Usuario, Clave, Tipo_cuenta as Privilegios FROM usuarios WHERE Usuario='%s' AND Clave='%s'",
     get_magic_quotes_gpc() ? $loginUsername : addslashes($loginUsername), get_magic_quotes_gpc() ? $password : addslashes($password)); 
   $LoginRS = mysql_query($LoginRS__query, $best) or die(mysql_error());
   $loginFoundUser = mysql_num_rows($LoginRS);
@@ -61,6 +59,7 @@ if (isset($_POST['textfield'])) {
 
     //declare two session variables and assign them
     $_SESSION['MM_Id'] = $data['idUsuarios'];
+    $_SESSION['Privilegios'] = $data['Privilegios'];
     $_SESSION['MM_Username'] = $loginUsername;
     $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
 

@@ -142,7 +142,7 @@ $totalRows_categ = mysql_num_rows($categ);
                       </tr>
           </table>
         <p>&nbsp;</p>
-        -<a href="verPreguntas2.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Pregunta</a>-
+        -<a href="verPreguntas.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Pregunta</a>-
         <?php if(isset($_SESSION['MM_Id'])){ ?>
           -<a href="crearPregunta.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Preguntar</a>-
 		  -<a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja</a>-		  

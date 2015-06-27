@@ -5,7 +5,7 @@ session_start();
 mysql_select_db($database_best, $best);
 $query_Preguntas = "SELECT * FROM preguntas WHERE idSubastas= '{$_GET['id']}'";
 $Preguntas = mysql_query($query_Preguntas, $best) or die(mysql_error());
-$row_Preguntas = mysql_fetch_assoc($Preguntas);
+
 $totalRows_Preguntas = mysql_num_rows($Preguntas);
 ?><!DOCTYPE html>
 <html lang="en">
@@ -34,7 +34,7 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 	<div class="body2">
 	  <div class="main">
 <!-- header -->
-			<header>
+		<header>
 				<div class="wrapper">
 					<h1><a href="index.php" id="logo">Bestnid</a></h1>
 					<?php include("includes/busca.php"); ?>
@@ -46,18 +46,27 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 				  <div class="col">
 						<h2>Preguntas</h2>
 						<table width="548" height="84" border="1">
-						<?php do { ?>
+						<?php while ($row_Preguntas = mysql_fetch_assoc($Preguntas)){ ?>
                           <tr>
                             <td height="37"><span class="Estilo1"><strong>Pregunta:</strong>:</span> <?php echo $row_Preguntas['Pregunta']; ?></td>
                           </tr>
-                           <?php if(isset($row_Preguntas['Respuesta'])){?>
+                           <?php
+
+                           $subasta_query = mysql_query("SELECT idUsuarios FROM subastas WHERE idSubastas = {$row_Preguntas['idSubastas']}");
+                           $subasta = mysql_fetch_assoc($subasta_query);
+
+                            if(isset($row_Preguntas['Respuesta'])){?>
 						  <tr>						   
                             <td height="39"><span class="Estilo2">Respuesta:</span> <?php echo $row_Preguntas['Respuesta']; ?></td>
                           </tr>
-						<?php }} while ($row_Preguntas = mysql_fetch_assoc($Preguntas)); ?>
+						  <?php } else if($subasta['idUsuarios'] == $_SESSION['MM_Id']) { //if (isset($row_Preguntas['idUsuarios'] = $_SESSION['MM_Id'] )){ ?>
+						  <tr>						   
+                            <td height="39"><a href="crearRespuesta.php?idPreguntas=<?php echo $row_Preguntas['idPreguntas']; ?>">Responder</a></td>
+                          </tr>						  					  
+						<?php }} ; ?>
 						</table>
 				  </div>
-				</div>
+				</div>			    
 			</header>
 <!-- / header -->
 <!-- content -->

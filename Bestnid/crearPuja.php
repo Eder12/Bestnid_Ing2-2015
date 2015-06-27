@@ -65,8 +65,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
-<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
-<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page1">
 <div class="body1">
@@ -94,9 +92,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Monto:</td>
-                              <td><span id="sprytextfield1">
-                              <input type="text" name="Monto" value="" size="32">
-                              <span class="textfieldRequiredMsg">Ingrese un monto. puede ser cero</span><span class="textfieldInvalidFormatMsg">Ingrese un numero. Sin puntos o guiones.</span><span class="textfieldMaxCharsMsg">Su monto es muy alto.</span></span></td>
+                              <td><input type="text" name="Monto" value="" size="32"></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">&nbsp;</td>
@@ -125,9 +121,6 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <!-- / footer -->
   </div>
 </div>
-<script type="text/javascript">
-var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {maxChars:11});
-</script>
 </body>
 </html>
 </body>

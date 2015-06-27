@@ -2,8 +2,6 @@
 # FileName="Connection_php_mysql.htm"
 # Type="MYSQL"
 # HTTP="true"
-# 
-session_start();
 $hostname_best = "localhost";
 $database_best = "bestnid";
 $username_best = "root";

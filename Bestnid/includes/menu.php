@@ -4,6 +4,8 @@
 							<li><a href="subasta.php">Subastas</a></li>
                             <?php if(isset($_SESSION['MM_Id'])){ ?>
                              <li><a href="crearSubasta.php">Crear subasta</a></li>
+							 <li><a href="verMisPreguntas.php">Mis preguntas</a></li>
+							 <li><a href="verMisPuja.php">Mis pujas</a></li>
                              <li><a href="misubasta.php"><?php echo $_SESSION['MM_Username']; ?></a></li>
                              <li><a href="sesion.php?doLogout=true">Salir</a></li>
                             <?php }else{?>

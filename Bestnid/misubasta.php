@@ -122,8 +122,9 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                           <td><?php echo $row_subastaver['Fecha']; ?></td>  
                           <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
                           <td>
-                            <a href="miDetalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a> -
+                            <a href="DetalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a> -
                             <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -
+                            <a href="elegirGanador.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Elegir ganador</a> -
                             <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Eliminar</a>							            
 						  </td>             
                       </tr>
