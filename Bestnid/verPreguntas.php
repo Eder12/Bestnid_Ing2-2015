@@ -59,7 +59,7 @@ $totalRows_Preguntas = mysql_num_rows($Preguntas);
 						  <tr>						   
                             <td height="39"><span class="Estilo2">Respuesta:</span> <?php echo $row_Preguntas['Respuesta']; ?></td>
                           </tr>
-						  <?php } else if($subasta['idUsuarios'] == $_SESSION['MM_Id']) { //if (isset($row_Preguntas['idUsuarios'] = $_SESSION['MM_Id'] )){ ?>
+						  <?php } else if($subasta['idUsuarios'] == $_SESSION['MM_Id']) { ?>
 						  <tr>						   
                             <td height="39"><a href="crearRespuesta.php?idPreguntas=<?php echo $row_Preguntas['idPreguntas']; ?>">Responder</a></td>
                           </tr>						  					  
