@@ -139,6 +139,8 @@ mysql_select_db($database_best, $best);
                           $totalRows_categ = mysql_num_rows($categ);
 
                            echo $row_categ['Nombre']; 
+						   $fecha = date_create($row_subastaver['Fecha']);
+							$fecha_venc = date_create($row_subastaver['Fecha_venc']);
 
                            ?></td>
                           <td><?php echo date_format($fecha, 'd/m/Y'); ?></td>  
