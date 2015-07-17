@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_sub" value="name:idSubastas;datatype:int,name:Titulo;datatype:string,name:Fecha;datatype:date,name:Fecha_venc;datatype:date,name:Estado;datatype:string,name:Comision;datatype:int,name:Descripcion;datatype:string,name:Imagen;datatype:string,name:idCategorias;datatype:int,name:idUsuarios;datatype:int,name:Ganador;datatype:int" />
+</info>

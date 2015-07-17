@@ -58,7 +58,8 @@ $query_subastaver = "SELECT * FROM subastas WHERE idUsuarios = '{$_SESSION['MM_I
 $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Mi subastas</title>
@@ -86,7 +87,7 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
         </div>
         <div class="wrapper">
           <div class="col">
-            <h2>Subastas <span>MIS SUBASTAS </span></h2>
+            <h2>Subastas <span>Mis subastas. </span></h2>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
           </div>
@@ -110,31 +111,37 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                       <?php do { ?>
                         <tr>                          
                           <td height="99"><img src="<?php echo $row_subastaver['Imagen']; ?>" width="126" /></td>
-                          <td><?php echo $row_subastaver['Titulo']; ?></td>
+                          <td><?php echo $row_subastaver['Titulo']; ?> </td>
                           <td><?php
 
                           $query_categ = sprintf("SELECT * FROM categorias WHERE idCategorias = %s", $row_subastaver['idCategorias']);
                           $categ = mysql_query($query_categ, $best) or die(mysql_error());
                           $row_categ = mysql_fetch_assoc($categ);
 
-                           echo $row_categ['Nombre']; 
+                          echo $row_categ['Nombre']; 
 
-                           ?></td>
+                          ?></td>
                           <td><?php echo $row_subastaver['Fecha']; ?></td>  
                           <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
                           <td>
                             <a href="DetalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a> -
-                            <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -
+							<?php
+                            $query_puj = sprintf("SELECT * FROM pujas WHERE idSubastas = %s", $row_subastaver['idSubastas']);
+                            $puj = mysql_query($query_puj, $best) or die(mysql_error());
+                            $row_puj = mysql_fetch_assoc($puj);
+                            ?>
+							<?php if($row_puj['idPujas'] == ''){ ?>
+                            <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -							
+                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>" onclick="if (! confirm('¿Seguro que quieres eliminar su subasta?')) return false;" >Eliminar</a> -
+							<?php }?>	
 							<?php if($row_subastaver['Estado'] != 'Completada'){ ?>
                             <a href="elegirGanador.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Elegir ganador</a> -
-							<?php }?>
-                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Eliminar</a>							            
+							<?php }?>													            
 						  </td>             
                       </tr>
                         <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
                     </table>
-          </form>
-                  <p>&nbsp;</p>
+          </form>                  
         </article>
       </section>
     </div>

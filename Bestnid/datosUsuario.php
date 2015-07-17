@@ -71,7 +71,8 @@ $totalRows_user = mysql_num_rows($user);
                             <td><?php echo $row_user['Telefono']; ?></td>
                           </tr>
                         </table>
-						<a href="modificarMisDatos.php">Editar</a> -						
+						<a href="modificarMisDatos.php">Editar</a> -
+						<a href="modificarMisDatos.php">Eliminar</a> -							
 				  </div>
 				</div>
 			</header>

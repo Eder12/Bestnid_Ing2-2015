@@ -142,6 +142,12 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page1">
 <div class="body1">
@@ -163,15 +169,20 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                           <table align="center">
                             <tr valign="baseline">
                               <td nowrap align="right">Titulo:</td>
-                              <td><input type="text" name="Titulo" value="" size="32"></td>
+                              <td><span id="sprytextfield1">
+                              <input type="text" name="Titulo" value="" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese un titulo.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Fecha de vencimiento:</td>
                               <td><input type="date" name="Fecha_venc"></td>
+                              
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Descripcion:</td>
-                              <td><textarea type="text" name="Descripcion" value="" size="32"></textarea></td>
+                              <td><span id="sprytextarea1">
+                              <textarea type="text" name="Descripcion" value="" size="32"></textarea>
+                              <span class="textareaRequiredMsg">Ingrese una descripcion.</span><span class="textareaMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Imagen:</td>
@@ -179,16 +190,18 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Categorias:</td>
-                               <td><select name="idCategorias">
-                                  <option value="0">Seleccione categoria</option>
-                                <?php
+                               <td><span id="spryselect1">
+                                 <select name="idCategorias">
+                                   <option value="0">Seleccione una categoria.</option>
+                                   <?php
                                   $categorias = mysql_query("SELECT * FROM categorias ORDER BY Nombre");
 
                                   while($row = mysql_fetch_assoc($categorias)){
                                     echo '<option value="'.$row['idCategorias'].'">'.$row['Nombre'].'</option>';
                                   }
                                 ?>
-                                </select></td>
+                                 </select>
+                               <span class="selectRequiredMsg">Seleccione un categoria.</span></span></td>
                               </td>
                                                     </tr>
                             <tr valign="baseline">
@@ -217,6 +230,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <!-- / footer -->
   </div>
 </div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {maxChars:50});
+var sprytextarea1 = new Spry.Widget.ValidationTextarea("sprytextarea1", {maxChars:255});
+var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+</script>
 </body>
 </html>
 </body>

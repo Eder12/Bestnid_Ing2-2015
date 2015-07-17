@@ -146,8 +146,8 @@ $totalRows_categ = mysql_num_rows($categ);
         <?php if(isset($_SESSION['MM_Id'])){ ?>
 		  <?php if(($_SESSION['MM_Id']) != ($row_subastaver['idUsuarios'])){ ?>
           -<a href="crearPregunta.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Preguntar</a>-
-		  <?php } ?>
-		  -<a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja</a>-		  
+		  -<a href="crearPuja.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Crear puja</a>-
+		  <?php } ?>		  		  
             <?php } ?>
         </p>		
 	    </article>

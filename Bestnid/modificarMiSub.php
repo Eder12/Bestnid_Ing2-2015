@@ -166,6 +166,12 @@ $totalRows_Sub = mysql_num_rows($Sub);
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationTextarea.js" type="text/javascript"></script>
+<script src="SpryAssets/SpryValidationSelect.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationTextarea.css" rel="stylesheet" type="text/css">
+<link href="SpryAssets/SpryValidationSelect.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page4">
 <div class="body1">
@@ -196,7 +202,9 @@ $totalRows_Sub = mysql_num_rows($Sub);
               <table align="center">
                 <tr valign="baseline">
                   <td nowrap align="right">Titulo:</td>
-                  <td><input type="text" name="Titulo" value="<?php echo $row_Sub['Titulo']; ?>" size="32"></td>
+                  <td><span id="sprytextfield1">
+                  <input type="text" name="Titulo" value="<?php echo $row_Sub['Titulo']; ?>" size="32">
+                  <span class="textfieldRequiredMsg">Ingrese un titulo.</span><span class="textfieldMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></td>
                 </tr>
                 <tr valign="baseline">
                   <td nowrap align="right">Fecha de vencimiento:</td>
@@ -204,13 +212,16 @@ $totalRows_Sub = mysql_num_rows($Sub);
                 </tr>
                 <tr valign="baseline">
                   <td nowrap align="right">Descripcion:</td>
-                  <td><input type="text" name="Descripcion" value="<?php echo $row_Sub['Descripcion']; ?>" size="32"></td>
+                  <td><span id="sprytextarea1">
+                  <textarea name="Descripcion" cols="50" rows="5"><?php echo $row_Sub['Descripcion']; ?></textarea>
+                  <span class="textareaRequiredMsg">Ingrese una descripcion.</span><span class="textareaMaxCharsMsg">Se ha superado el número máximo de caracteres.</span></span></td>
                 </tr>
                 <tr valign="baseline">
                   <td nowrap align="right">Categorias:</td>
-                  <td><select name="idCategorias">
+                  <td><span id="spryselect1">
+                    <select name="idCategorias">
                       <option value="0">Seleccione categoria</option>
-                    <?php
+                      <?php
                       $categorias = mysql_query("SELECT * FROM categorias ORDER BY Nombre");
 
                       while($row = mysql_fetch_assoc($categorias)){
@@ -219,7 +230,8 @@ $totalRows_Sub = mysql_num_rows($Sub);
                         echo'>'.$row['Nombre'].'</option>';
                       }
                     ?>
-                    </select></td>
+                    </select>
+                  <span class="selectRequiredMsg">Seleccione una categoria.</span></span></td>
                 </tr>
                 <tr valign="baseline">
                   <td nowrap align="right">Imagen:</td>
@@ -250,6 +262,11 @@ $totalRows_Sub = mysql_num_rows($Sub);
 <!-- / footer -->
   </div>
 </div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {maxChars:50});
+var sprytextarea1 = new Spry.Widget.ValidationTextarea("sprytextarea1", {maxChars:255});
+var spryselect1 = new Spry.Widget.ValidationSelect("spryselect1");
+</script>
 </body>
 </html>
 <?php
