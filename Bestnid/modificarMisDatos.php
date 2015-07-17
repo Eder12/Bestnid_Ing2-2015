@@ -76,6 +76,8 @@ $totalRows_user = mysql_num_rows($user);
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page4">
 <div class="body1">
@@ -99,31 +101,45 @@ $totalRows_user = mysql_num_rows($user);
                           <table align="center">
                             <tr valign="baseline">
                               <td width="60" align="right" nowrap>DNI:</td>
-                              <td width="235"><input type="text" name="DNI" value="<?php echo $row_user['DNI']; ?>" size="32"></td>
+                              <td width="235"><span id="sprytextfield1">
+                              <input type="text" name="DNI" value="<?php echo $row_user['DNI']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese su DNI.</span><span class="textfieldMinCharsMsg">Ingresé los 8 caracteres del DNI sin puntos ni guiones.</span><span class="textfieldMaxCharsMsg">Ingresé los 8 caracteres del DNI sin puntos ni guiones.</span><span class="textfieldInvalidFormatMsg">Ingrese los numeros de su DNI.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Nombre:</td>
-                              <td><input type="text" name="Nombre" value="<?php echo $row_user['Nombre']; ?>" size="32"></td>
+                              <td><span id="sprytextfield2">
+                              <input type="text" name="Nombre" value="<?php echo $row_user['Nombre']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese su nombre.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 50.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Apellido:</td>
-                              <td><input type="text" name="Apellido" value="<?php echo $row_user['Apellido']; ?>" size="32"></td>
+                              <td><span id="sprytextfield4">
+                              <input type="text" name="Apellido" value="<?php echo $row_user['Apellido']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese su apellido.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 50.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Usuario:</td>
-                              <td><input type="text" name="Usuario" value="<?php echo $row_user['Usuario']; ?>" size="32"></td>
+                              <td><span id="sprytextfield5">
+                              <input type="text" name="Usuario" value="<?php echo $row_user['Usuario']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese un nombre de usuario. Entre 4 y 25 caracteres.</span><span class="textfieldMinCharsMsg">El mínimo de caracteres requerido es de 4.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 25.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Clave:</td>
-                              <td><input type="password" name="Clave" value="" size="32"></td>
+                              <td><span id="sprytextfield3">
+                              <input type="password" name="Clave" value="<?php echo $row_user['Clave']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese un clave de usuario. Entre 4 y 25 caracteres.</span><span class="textfieldMinCharsMsg">El mínimo de caracteres requerido es de 4.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 25.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Email:</td>
-                              <td><input type="text" name="Email" value="<?php echo $row_user['Email']; ?>" size="32"></td>
+                              <td><span id="sprytextfield6">
+                              <input type="text" name="Email" value="<?php echo $row_user['Email']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese su email.</span><span class="textfieldInvalidFormatMsg">Formato ejemplo@email.com</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 50.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">Telefono:</td>
-                              <td><input type="text" name="Telefono" value="<?php echo $row_user['Telefono']; ?>" size="32"></td>
+                              <td><span id="sprytextfield7">
+                              <input type="text" name="Telefono" value="<?php echo $row_user['Telefono']; ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese su telefono.</span><span class="textfieldInvalidFormatMsg">Formato: 00001234567. Sin puntos, guiones o paréntesis.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 15.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td height="43" align="right" nowrap>&nbsp;</td>
@@ -156,6 +172,15 @@ $totalRows_user = mysql_num_rows($user);
 <!-- / footer -->
   </div>
 </div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "integer", {minChars:8, maxChars:8});
+var sprytextfield2 = new Spry.Widget.ValidationTextField("sprytextfield2", "none", {maxChars:50});
+var sprytextfield3 = new Spry.Widget.ValidationTextField("sprytextfield3", "none", {minChars:4, maxChars:25});
+var sprytextfield4 = new Spry.Widget.ValidationTextField("sprytextfield4", "none", {maxChars:50});
+var sprytextfield5 = new Spry.Widget.ValidationTextField("sprytextfield5", "none", {minChars:4, maxChars:25});
+var sprytextfield6 = new Spry.Widget.ValidationTextField("sprytextfield6", "email", {maxChars:50});
+var sprytextfield7 = new Spry.Widget.ValidationTextField("sprytextfield7", "integer", {maxChars:15});
+</script>
 </body>
 </html>
 <?php

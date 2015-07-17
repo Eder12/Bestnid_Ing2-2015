@@ -72,7 +72,14 @@ $totalRows_user = mysql_num_rows($user);
                           </tr>
                         </table>
 						<a href="modificarMisDatos.php">Editar</a> -
-						<a href="modificarMisDatos.php">Eliminar</a> -							
+						<?php
+                        $query_sub = sprintf("SELECT * FROM subastas WHERE idUsuarios = %s", $row_user['idUsuarios']);
+                        $sub = mysql_query($query_sub, $best) or die(mysql_error());
+                        $row_sub = mysql_fetch_assoc($sub);
+                        ?>
+						<?php if($row_sub['idSubastas'] == ''){ ?>
+						<a href="elimMiCuenta.php?idUsuarios=<?php echo $row_user['idUsuarios']; ?>" onClick="if (! confirm('¿Seguro que quieres eliminar su cuenta?')) return false;">Eliminar</a> -
+						<?php }?>								
 				  </div>
 				</div>
 			</header>
