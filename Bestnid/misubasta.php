@@ -6,6 +6,7 @@ require_once('Connections/best.php');
 if (!isset($_SESSION)) {
   session_start();
 }
+
 function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
 {
   $theValue = (!get_magic_quotes_gpc()) ? addslashes($theValue) : $theValue;

@@ -1,10 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Documento sin t&iacute;tulo</title>
-</head>
+<?php
+error_reporting(E_STRICT);
+require_once('Connections/best.php');
+session_start(); 
 
-<body>
+
+if($_SESSION['Privilegios'] != 'Administrador'){
+	header('Location: index.php');
+	die;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Buscador</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
+<script type="text/javascript" src="js/html5.js"></script>
+<![endif]-->
+</head>
+<body id="page4">
+<div class="body1">
+	<div class="body2">
+	  <div class="main">
+<!-- header -->
+			<header>
+				<div class="wrapper">
+					<h1><a href="index.php" id="logo">Bestnid</a></h1>
+					<?php include("includes/busca.php"); ?>
+				</div>
+				<div class="wrapper">
+				<?php include("includes/menu.php"); ?>
+				</div>
+				<div class="wrapper">
+					<div class="col">
+						<h2>Detalle</h2>
+						<a href="estadisticas.php">Estadisticas</a> -
+						<a href="verCategorias.php">Categoria</a> -
+						<p>&nbsp;</p>
+					</div>
+				</div>
+			</header>
+<!-- / header -->
+<!-- content -->
+		  <section id="content">
+<article class="col2"></article>
+		  </section>
+		</div>
+	</div>
+</div>
+<div class="body3">
+	<div class="main">
+<!-- / content -->
+<!-- footer -->
+		<footer>
+			<?php include("includes/pie.php"); ?>
+			<?php include("includes/nombres.php"); ?>
+		</footer>
+<!-- / footer -->
+  </div>
+</div>
 </body>
 </html>

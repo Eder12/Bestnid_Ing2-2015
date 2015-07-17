@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_pujas" value="name:idPujas;datatype:int,name:Estado;datatype:string,name:Monto;datatype:int,name:Fecha;datatype:date,name:Descripcion;datatype:string,name:idSubastas;datatype:int,name:idUsuarios;datatype:int" />
+</info>

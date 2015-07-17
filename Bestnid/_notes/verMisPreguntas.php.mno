@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <info>
 	<infoitem key="UD_miPreg" value="name:idPreguntas;datatype:int,name:Pregunta;datatype:string,name:Respuesta;datatype:string,name:idSubastas;datatype:int,name:idUsuarios;datatype:int" />
+	<infoitem key="UD_Preguntas" value="name:idPreguntas;datatype:int,name:Pregunta;datatype:string,name:Respuesta;datatype:string,name:idSubastas;datatype:int,name:idUsuarios;datatype:int" />
 </info>

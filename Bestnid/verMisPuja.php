@@ -96,10 +96,11 @@ $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
         <form name="registro" id="registro">
                     <table width="767" border="1">
                       <tr>             
-                        <td width="89" height="31">Fecha</td>
-                        <td width="94">Titulo</td>
-                        <td width="74">Monto </td>
-                        <td width="482">Descripcion </td>
+                        <td width="65" height="31">Fecha</td>
+                        <td width="65">Titulo</td>
+                        <td width="59">Monto </td>
+                        <td width="408">Descripcion </td>
+                        <td width="136">Acciones</td>
 					  </tr>
                       <?php while ($puja = mysql_fetch_assoc($subastaver)){ ?>
                         <tr>                          
@@ -110,8 +111,10 @@ $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 						   <a href="DetalleSub.php?id=<?php echo $puja['idSubastas']; ?>"> <?php echo $subasta['Titulo']; ?></a>
 						  </td>
                           <td><?php echo $puja['Monto']; ?></td>
-						  <td><?php echo $puja['Descripcion']; ?></td>
-					  </tr>
+						  <td><?php echo $puja['Descripcion']; ?></td>                          
+						  <td><a href="modificarMisPujas.php?idPujas=<?php echo $puja['idPujas']; ?>">Editar</a>-
+                          <a href="elimMiPuja.php?idPujas=<?php echo $puja['idPujas']; ?>">Eliminar</a>-</td>                   
+                          </tr>
                         <?php } ?>
             </table>
           </form>		  

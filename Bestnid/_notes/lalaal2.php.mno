@@ -2,4 +2,5 @@
 <info>
 	<infoitem key="UD_subastaver" value="name:idSubastas;datatype:int,name:Titulo;datatype:string,name:Fecha;datatype:date,name:Fecha_venc;datatype:date,name:Estado;datatype:string,name:Comision;datatype:int,name:Descripcion;datatype:string,name:Imagen;datatype:blob,name:idCategorias;datatype:int,name:idUsuarios;datatype:int" />
 	<infoitem key="UD_categ" value="name:idCategorias;datatype:int,name:Nombre;datatype:string" />
+	<infoitem key="UD_user" value="name:idUsuarios;datatype:int,name:DNI;datatype:int,name:Usuario;datatype:string,name:Clave;datatype:string,name:Nombre;datatype:string,name:Apellido;datatype:string,name:Email;datatype:string,name:Telefono;datatype:int,name:Fecha_reg;datatype:date,name:Tipo_cuenta;datatype:string,name:idLocalidad;datatype:int" />
 </info>

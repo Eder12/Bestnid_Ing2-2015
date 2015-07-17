@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Usur" value="name:idUsuarios;datatype:int,name:DNI;datatype:int,name:Usuario;datatype:string,name:Clave;datatype:string,name:Nombre;datatype:string,name:Apellido;datatype:string,name:Email;datatype:string,name:Telefono;datatype:int,name:Fecha_reg;datatype:date,name:Tipo_cuenta;datatype:string,name:idLocalidad;datatype:int" />
+	<infoitem key="UD_user" value="name:idUsuarios;datatype:int,name:DNI;datatype:int,name:Usuario;datatype:string,name:Clave;datatype:string,name:Nombre;datatype:string,name:Apellido;datatype:string,name:Email;datatype:string,name:Telefono;datatype:int,name:Fecha_reg;datatype:date,name:Tipo_cuenta;datatype:string,name:idLocalidad;datatype:int" />
+</info>

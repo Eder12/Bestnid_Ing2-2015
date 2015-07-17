@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Ok eliminar subasta</title>
+<title>Ok eliminar cuenta</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
@@ -29,7 +29,7 @@ session_start();
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Usted a eliminado su subasta con éxito. </h2>
+						<h2>Usted a eliminado su cuenta con éxito. </h2>
 						<p class="pad_bot1">Gracias por usar Bestnid.</p>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>
