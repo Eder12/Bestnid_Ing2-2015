@@ -147,7 +147,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 				</div>
 				<div class="wrapper">
 					<div class="col">
-						<h2>Regístrate <span>Complete todos los capas.</span></h2>
+						<h2>Regístrate <span>Complete todos los campos.</span></h2>
 				  </div>
 				</div>
 			</header>
@@ -192,7 +192,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
       <td nowrap align="right">Email:</td>
       <td><span id="sprytextfield2">
       <input type="text" name="Email" value="" size="32">
-      <span class="textfieldRequiredMsg">Ingrese su email.</span><span class="textfieldInvalidFormatMsg">Formato ejemplo@mail.com.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 50.</span></span></td>
+      <span class="textfieldRequiredMsg">Ingrese su email.</span><span class="textfieldInvalidFormatMsg">Formato ejemplo@email.com</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 50.</span></span></td>
     </tr>
     <tr valign="baseline">
       <td nowrap align="right">Telefono:</td>

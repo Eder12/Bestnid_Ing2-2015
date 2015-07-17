@@ -116,7 +116,7 @@ if (isset($_POST['textfield'])) {
 <!-- content -->
 			<section id="content">
 				<p>&nbsp;</p>
-				<article class="col2">
+			  <article class="col2">
 					<h3>Iniciar Sesión </h3>					      
 								<table width="288" border="1">
   <tr>
@@ -140,7 +140,7 @@ if (isset($_POST['textfield'])) {
       </form>
   </tr>
 </table>
-				</article>
+<a href="recuperar.php">Recuperar contraseña.</a></article>
 		  </section>
 		</div>
 	</div>

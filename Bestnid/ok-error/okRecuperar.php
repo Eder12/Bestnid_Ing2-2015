@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Error Sesi&oacute;n</title>
+<title>Ok recuperar</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="../css/layout.css" type="text/css" media="all">
@@ -12,8 +12,7 @@ session_start();
 <!--[if lt IE 9]>
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
-<![endif]-->
-</head>
+<![endif]--></head>
 <body id="page1">
 <div class="body1">
 	<div class="body2">
@@ -28,13 +27,10 @@ session_start();
 					<?php include("../includes/menu2.php"); ?>
 				</div>
 				<div class="wrapper">
-				  <div class="col">
-						<h2>Usuario o clave  incorrecta. </h2>
-						<p class="pad_bot1"> Intente de nuevo o <a href="../recuperar.php">recupere su contraseña</a>. </p>
+					<div class="col">
+						<h2>Se ha enviado un mail para recuperar su clave. </h2>
 						<p class="pad_bot1">&nbsp;</p>
 						<p class="pad_bot1">&nbsp;</p>
-						<p class="pad_bot1">&nbsp;</p>
-					  <p class="pad_bot1">&nbsp;</p>
 				  </div>
 				</div>
 			</header>
