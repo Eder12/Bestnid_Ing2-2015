@@ -52,7 +52,7 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 mysql_select_db($database_best, $best);
 $query_subastaver = "SELECT * FROM pujas WHERE idUsuarios = '{$_SESSION['MM_Id']}' ORDER BY Fecha DESC";
 $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
-
+$fecha = date_create($pujas['Fecha']);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -104,10 +104,14 @@ $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 					  </tr>
                       <?php while ($puja = mysql_fetch_assoc($subastaver)){ ?>
                         <tr>                          
-                          <td height="28"><?php echo $puja['Fecha']; ?></td>
+							
+                          <td height="28"><?php			
+							echo date_format($fecha, 'd/m/Y'); ?></td>
                           <td><?php 
+						  
 						   $subasta_query = mysql_query("SELECT Titulo FROM subastas WHERE idSubastas = {$puja['idSubastas']}");
-                           $subasta = mysql_fetch_assoc($subasta_query);?>
+                           $subasta = mysql_fetch_assoc($subasta_query);
+						   $fecha = date_create($puja['Fecha']);?>
 						   <a href="DetalleSub.php?id=<?php echo $puja['idSubastas']; ?>"> <?php echo $subasta['Titulo']; ?></a>
 						  </td>
                           <td><?php echo $puja['Monto']; ?></td>

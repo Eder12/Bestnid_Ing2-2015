@@ -61,8 +61,7 @@ $query_subastaver = "SELECT * FROM subastas WHERE Estado = 'Pendiente' AND Fecha
 $query_limit_subastaver = sprintf("%s LIMIT %d, %d", $query_subastaver, $startRow_subastaver, $maxRows_subastaver);
 $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
-$fecha = date_create($row_subastaver['Fecha']);
-$fecha_venc = date_create($row_subastaver['Fecha_venc']);
+
 
 if (isset($_GET['totalRows_subastaver'])) {
   $totalRows_subastaver = $_GET['totalRows_subastaver'];
@@ -77,7 +76,8 @@ if (isset($_SESSION['idCategorias'])) {
   $colname_categ = (get_magic_quotes_gpc()) ? $_SESSION['idCategorias'] : addslashes($_SESSION['idCategorias']);
 }
 mysql_select_db($database_best, $best);
-
+$fecha = date_create($row_subastaver['Fecha']);
+$fecha_venc = date_create($row_subastaver['Fecha_venc']);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

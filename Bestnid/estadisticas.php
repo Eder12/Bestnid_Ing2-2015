@@ -28,9 +28,11 @@ function getSubs( $from, $to ){
     $query = mysql_query("SELECT * FROM subastas WHERE Fecha BETWEEN '{$from}' AND '{$to}'");
     $res=array();
     while($row=mysql_fetch_assoc($query)){
+		$fecha = date_create($row['Fecha']);
+        date_format($fecha_ini, 'd/m/Y');
         $res[]=array(
             'Título' => $row['Titulo'],
-            'Fecha' => $row['Fecha']
+            'Fecha' => date_format($fecha, 'd/m/Y')
         );
     }
     return $res;
@@ -82,8 +84,10 @@ if(isset($_GET['tipo'])){
                                 echo '<b> ';
                                 echo count($stats);
                                 echo ($_GET['tipo']=='users')?' Usuarios':' Subastas';
-                                echo ' desde el '. $_GET['fecha_ini'];
-                                echo ' hasta el '. $_GET['fecha_fin'];
+								$fecha_ini = date_create($_GET['fecha_ini']);
+								$fecha_fin = date_create($_GET['fecha_fin']);
+                                echo ' desde el '. date_format($fecha_ini, 'd/m/Y');
+                                echo ' hasta el '. date_format($fecha_fin, 'd/m/Y');
                                 echo '</b> <a href="estadisticas.php">Volver</a>';
                                 echo '<br />';
                                 echo '<br />';

@@ -57,6 +57,8 @@ mysql_select_db($database_best, $best);
 $query_subastaver = "SELECT * FROM subastas WHERE idUsuarios = '{$_SESSION['MM_Id']}' ORDER BY Fecha DESC";
 $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
 $row_subastaver = mysql_fetch_assoc($subastaver);
+$fecha = date_create($row_subastaver['Fecha']);
+$fecha_venc = date_create($row_subastaver['Fecha_venc']);
 
 ?>
 <!DOCTYPE html>
@@ -119,10 +121,12 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                           $row_categ = mysql_fetch_assoc($categ);
 
                           echo $row_categ['Nombre']; 
+							$fecha = date_create($row_subastaver['Fecha']);
+							$fecha_venc = date_create($row_subastaver['Fecha_venc']);
 
                           ?></td>
-                          <td><?php echo $row_subastaver['Fecha']; ?></td>  
-                          <td><?php echo $row_subastaver['Fecha_venc']; ?></td>             
+                          <td><?php echo date_format($fecha, 'd/m/Y'); ?></td>  
+                          <td><?php echo date_format($fecha_venc, 'd/m/Y'); ?></td>             
                           <td>
                             <a href="DetalleSub.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Ver más</a> -
 							<?php
