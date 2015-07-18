@@ -132,11 +132,11 @@ $row_subastaver = mysql_fetch_assoc($subastaver);
                             ?>
 							<?php if($row_puj['idPujas'] == ''){ ?>
                             <a href="modificarMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>">Editar</a> -							
-                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>" onclick="if (! confirm('¿Seguro que quieres eliminar su subasta?')) return false;" >Eliminar</a> -
-							<?php }?>	
-							<?php if($row_subastaver['Estado'] != 'Completada'){ ?>
+                            <a href="elimMiSub.php?idSubastas=<?php echo $row_subastaver['idSubastas']; ?>" onClick="if (! confirm('¿Seguro que quieres eliminar su subasta?')) return false;" >Eliminar</a> -
+							<?php } ?>	
+							<?php if($row_subastaver['Estado'] != 'Completada'){ if($row_subastaver['Fecha_venc'] < date('Y-m-d')){ ?>
                             <a href="elegirGanador.php?id=<?php echo $row_subastaver['idSubastas']; ?>">Elegir ganador</a> -
-							<?php }?>													            
+							<?php }}?>													            
 						  </td>             
                       </tr>
                         <?php } while ($row_subastaver = mysql_fetch_assoc($subastaver)); ?>
