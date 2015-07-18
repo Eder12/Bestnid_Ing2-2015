@@ -75,7 +75,13 @@ $totalRows_cate = mysql_num_rows($cate);
                       <tr>
                         <td width="116">-<?php echo $row_cate['Nombre']; ?></td>
                         <td width="63"><a href="modificarCategoria.php?idCategorias=<?php echo $row_cate['idCategorias']; ?>"> Modificar</a></td>
-                        <td width="66"><a href="elimCategoria.php?idCategorias=<?php echo $row_cate['idCategorias']; ?>"> Eliminar</a></td>
+						<?php
+                        $query_sub = sprintf("SELECT * FROM subastas WHERE idCategorias = %s", $row_cate['idCategorias']);
+                        $sub = mysql_query($query_sub, $best) or die(mysql_error());
+                        $row_sub = mysql_fetch_assoc($sub);
+                        if($row_sub['idSubastas'] == ''){ ?>
+                        <td width="66"><a href="elimCategoria.php?idCategorias=<?php echo $row_cate['idCategorias']; ?>" onClick="if (! confirm('¿Seguro que quieres eliminar la categoria?')) return false;"> Eliminar</a></td>
+						<?php }?>	
                       </tr>
                     </table>
                     <?php } while ($row_cate = mysql_fetch_assoc($cate)); ?>

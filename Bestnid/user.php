@@ -7,7 +7,7 @@ session_start();
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buscador</title>
+<title>Ganador</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -40,7 +40,16 @@ session_start();
                         <ul>
                             <li>Nombre: <?php echo $user['Nombre'] ?></li>
                             <li>Apellido: <?php echo $user['Apellido'] ?></li>							
-                            <li>Correo: <?php echo $user['Email'] ?></li>							
+                            <li>Correo: <?php echo $user['Email'] ?></li>
+							<?php 
+							$query_mon = sprintf("SELECT * FROM pujas WHERE idUsuarios = %s", $user['idUsuarios']);
+                            $mon = mysql_query($query_mon, $best) or die(mysql_error());
+                            $row_mon = mysql_fetch_assoc($mon);
+														
+							$a= $row_mon['Monto'];											
+							$cuenta= $a*70/100;										
+							?>							
+                            <li>Monto: <?php echo $cuenta; ?></li>
                         </ul>
                     </div>
                 </div>

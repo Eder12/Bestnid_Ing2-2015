@@ -78,7 +78,7 @@ $totalRows_user = mysql_num_rows($user);
                         $row_sub = mysql_fetch_assoc($sub);
                         ?>
 						<?php if($row_sub['idSubastas'] == ''){ ?>
-						<a href="elimMiCuenta.php?idUsuarios=<?php echo $row_user['idUsuarios']; ?>" onClick="if (! confirm('¿Seguro que quieres eliminar su cuenta?')) return false;">Eliminar</a> -
+						<a href="elimMiCuenta.php?idUsuarios=<?php echo $row_user['idUsuarios']; ?>" onClick="if (! confirm('Sus pujas no se eliminarar, si gana una subasta se le enviara un mail. Aunque puede eliminar sus pujas una por una. ¿Seguro que quieres eliminar su cuenta?')) return false;">Eliminar</a> -
 						<?php }?>								
 				  </div>
 				</div>

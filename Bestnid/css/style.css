@@ -39,7 +39,7 @@ header {width:100%;overflow:hidden;padding-bottom:20px}
 #search .input {float:right;margin-right:7px;background:url(../images/search_input.gif) no-repeat;width:177px;font:14px Arial, Helvetica, sans-serif;color:#363636;height:17px;padding:6px}
 #menu {float:right;padding:22px 27px 0 0}
 #menu li {float:left;padding-left:1px}
-#menu li a {display:block;font-size:18px;color:#fff;line-height:50px;padding:0 22px;text-decoration:none;font-weight:normal}
+#menu li a {display:block;font-size:15px;color:#fff;line-height:50px;padding:0 22px;text-decoration:none;font-weight:normal}
 #menu li a:hover {color:#008cdd}
 /* content */
 #content { width:100%;overflow:hidden;padding-bottom:35px}

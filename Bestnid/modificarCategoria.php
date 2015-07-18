@@ -118,7 +118,8 @@ $totalRows_cate = mysql_num_rows($cate);
 <p>&nbsp;</p>
 						<p>&nbsp;</p>
 					</div>
-				</div>				
+				</div>
+				<?php include("includes/nombres.php"); ?>
 			</header>
 <!-- / header -->
 <!-- content -->
@@ -134,7 +135,6 @@ $totalRows_cate = mysql_num_rows($cate);
 <!-- footer -->
 	  <footer>
 			<?php include("includes/pie.php"); ?>
-			<?php include("includes/nombres.php"); ?>
 		</footer>
 <!-- / footer -->
   </div>

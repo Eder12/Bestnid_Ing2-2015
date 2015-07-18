@@ -113,7 +113,7 @@ $subastaver = mysql_query($query_subastaver, $best) or die(mysql_error());
                           <td><?php echo $puja['Monto']; ?></td>
 						  <td><?php echo $puja['Descripcion']; ?></td>                          
 						  <td><a href="modificarMisPujas.php?idPujas=<?php echo $puja['idPujas']; ?>">Editar</a>-
-                          <a href="elimMiPuja.php?idPujas=<?php echo $puja['idPujas']; ?>">Eliminar</a>-</td>                   
+                          <a href="elimMiPuja.php?idPujas=<?php echo $puja['idPujas']; ?>" onClick="if (! confirm('¿Seguro que quieres eliminar su puja?')) return false;">Eliminar</a>-</td>                   
                           </tr>
                         <?php } ?>
             </table>

@@ -28,7 +28,7 @@ if(isset($_GET['ganador'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Buscador</title>
+<title>Elegir ganador</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
