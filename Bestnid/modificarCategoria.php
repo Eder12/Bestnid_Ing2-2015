@@ -1,6 +1,27 @@
 <?php 
 error_reporting(E_STRICT);
 require_once('Connections/best.php'); 
+ 
+// *** Redirect if cate exists
+$MM_flag="MM_insert";
+if (isset($_POST[$MM_flag])) {
+  $MM_dupKeyRedirect="ok-error/existeCate.php";
+  $loginCate = $_POST['Nombre'];
+  $LoginCate__query = "SELECT Nombre FROM categorias WHERE Nombre='" . $loginCate . "'";
+  mysql_select_db($database_best, $best);
+  $LoginCate=mysql_query($LoginCate__query, $best) or die(mysql_error());
+  $loginFoundCate = mysql_num_rows($LoginCate);
+
+  //if there is a row in the cate, the username was found - can not add the requested cate
+  if($loginFoundCate){
+    $MM_qsChar = "?";
+    //append the cate to the redirect page
+    if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
+    $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginCate;
+    header ("Location: $MM_dupKeyRedirect");
+    exit;
+  }
+}
 
 //initialize the session
 if (!isset($_SESSION)) {
@@ -82,6 +103,8 @@ $totalRows_cate = mysql_num_rows($cate);
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page4">
 <div class="body1">
@@ -104,7 +127,9 @@ $totalRows_cate = mysql_num_rows($cate);
                           <table align="center">
                             <tr valign="baseline">
                               <td nowrap align="right">Nombre:</td>
-                              <td><input type="text" name="Nombre" value="<?php echo htmlentities($row_cate['Nombre'], ENT_COMPAT, 'utf-8'); ?>" size="32"></td>
+                              <td><span id="sprytextfield1">
+                              <input type="text" name="Nombre" value="<?php echo htmlentities($row_cate['Nombre'], ENT_COMPAT, 'utf-8'); ?>" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese la categoria.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 25.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">&nbsp;</td>
@@ -139,6 +164,9 @@ $totalRows_cate = mysql_num_rows($cate);
 <!-- / footer -->
   </div>
 </div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {maxChars:25});
+</script>
 </body>
 </html>
 <?php

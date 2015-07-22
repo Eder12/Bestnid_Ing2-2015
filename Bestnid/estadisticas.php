@@ -15,10 +15,13 @@ function getUsers( $from, $to ){
     $query = mysql_query("SELECT * FROM usuarios WHERE Fecha_reg BETWEEN '{$from}' AND '{$to}'");
     $res=array();
     while($row=mysql_fetch_assoc($query)){
-        $res[]=array(
-            'Nombre' => $row['Nombre'].','.$row['Apellido'],
-            'Telefono' => $row['Telefono'],
-            'DNI' => $row['DNI'],
+        $Fecha_reg = date_create($row['Fecha_reg']);
+        date_format($fecha_ini, 'd/m/Y');
+		$res[]=array(
+            'Nombre' =>  'Nombre y Apellido:'. $row['Nombre'].','.$row['Apellido'],
+            'Telefono' => 'Telefono:'. $row['Telefono'],
+            'DNI' => 'DNI:'. $row['DNI'],
+			'Fecha_reg' => 'Fecha:'. date_format($Fecha_reg, 'd/m/Y'),
         );
     }
     return $res;
@@ -31,8 +34,8 @@ function getSubs( $from, $to ){
 		$fecha = date_create($row['Fecha']);
         date_format($fecha_ini, 'd/m/Y');
         $res[]=array(
-            'Título' => $row['Titulo'],
-            'Fecha' => date_format($fecha, 'd/m/Y')
+            'Título' => 'Titulo:'. $row['Titulo'],
+            'Fecha' => 'Fecha:'. date_format($fecha, 'd/m/Y'),
         );
     }
     return $res;
@@ -127,7 +130,7 @@ if(isset($_GET['tipo'])){
           <section id="content">
 <article class="col2"></article>
           </section>
-        </div>
+      </div>
     </div>
 </div>
 <div class="body3">

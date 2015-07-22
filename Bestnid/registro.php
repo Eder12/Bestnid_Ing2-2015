@@ -32,10 +32,10 @@ if (isset($_POST[$MM_flag])) {
   $LoginDni=mysql_query($LoginDni__query, $best) or die(mysql_error());
   $loginFoundDni = mysql_num_rows($LoginDni);
 
-  //if there is a row in the database, the username was found - can not add the requested username
+  //if there is a row in the database, the DNI was found - can not add the requested DNI
   if($loginFoundDni){
     $MM_qsChar = "?";
-    //append the username to the redirect page
+    //append the DNI to the redirect page
     if (substr_count($MM_dupKeyRedirect,"?") >=1) $MM_qsChar = "&";
     $MM_dupKeyRedirect = $MM_dupKeyRedirect . $MM_qsChar ."requsername=".$loginDni;
     header ("Location: $MM_dupKeyRedirect");
@@ -52,7 +52,7 @@ if (isset($_POST[$MM_flag])) {
   $LoginEmail=mysql_query($LoginEmail__query, $best) or die(mysql_error());
   $loginFoundEmail = mysql_num_rows($LoginEmail);
 
-  //if there is a row in the database, the username was found - can not add the requested username
+  //if there is a row in the database, the Email was found - can not add the requested username
   if($loginFoundEmail){
     $MM_qsChar = "?";
     //append the username to the redirect page

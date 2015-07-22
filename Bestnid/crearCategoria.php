@@ -3,7 +3,6 @@ error_reporting(E_STRICT);
 require_once('Connections/best.php');
 session_start(); 
 
-
 if($_SESSION['Privilegios'] != 'Administrador'){
 	header('Location: index.php');
 	die;
@@ -72,6 +71,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
 <script type="text/javascript" src="js/html5.js"></script>
 <![endif]-->
+<script src="SpryAssets/SpryValidationTextField.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryValidationTextField.css" rel="stylesheet" type="text/css">
 </head>
 <body id="page4">
 <div class="body1">
@@ -94,7 +95,9 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
                           <table align="center">
                             <tr valign="baseline">
                               <td nowrap align="right">Nombre:</td>
-                              <td><input type="text" name="Nombre" value="" size="32"></td>
+                              <td><span id="sprytextfield1">
+                              <input type="text" name="Nombre" value="" size="32">
+                              <span class="textfieldRequiredMsg">Ingrese la categoria.</span><span class="textfieldMaxCharsMsg">El número máximo de caracteres es de 25.</span></span></td>
                             </tr>
                             <tr valign="baseline">
                               <td nowrap align="right">&nbsp;</td>
@@ -128,5 +131,8 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "form1")) {
 <!-- / footer -->
   </div>
 </div>
+<script type="text/javascript">
+var sprytextfield1 = new Spry.Widget.ValidationTextField("sprytextfield1", "none", {maxChars:25});
+</script>
 </body>
 </html>
